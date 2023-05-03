@@ -1,0 +1,29 @@
+1. start rmi registry
+
+2. create a new QueueManage MCH.SERV.BUS
+
+3. create a topic Mch.Service.Request
+
+
+4. create a jms administered object using ldap
+   
+   simple ldap server  - use java's one -  start rmiregistry&
+
+5. create a connection factory  - TopicConnectionFactory using wmq client and connecting to above created QM
+
+6. create a jms destination for topic created in step 3
+
+7. create a channel authentication record for user orchestrate mapping to a map user on system where mq is installed
+   grant topic creation and browsing authorities for the mappeduser on base topic, as mch uses temporary topics
+   
+8. Use below properties to connect to websphere mq - both in server and UI
+
+   provider.url=rmi://MQ_MACHINE_IP:RMI_PORT/
+   ctx.factory=com.sun.jndi.rmi.registry.RegistryContextFactory
+   connectionFactory=TopicConnectionFactory
+   serviceRequestQueueName=Mch.Service.Request
+
+
+
+   
+

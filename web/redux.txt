@@ -1,0 +1,75 @@
+link - http://redux.js.org/docs/basics/
+       http://redux.js.org/docs/basics/ExampleTodoList.html
+
+-----------------------------------------------------------------------
+Concepts
+-----------------------------------------------------------------------
+	   
+Reducers - ((previousState, action) => newState 
+         - should be a pure function 
+		 - ie no parameter mutations or api calls
+            should return new state if there are any modifications
+            Update state according to Actions		
+			
+Actions - Actions are payloads of information that send data from your application to your store
+          store.dispatch
+		- Object with type and payload
+		
+ActionCreators - functions which create actions
+	
+Store 
+		Holds application state;
+		Allows access to state via getState();
+		Allows state to be updated via dispatch(action) 
+		Registers listeners via subscribe(listener);
+		Handles unregistering of listeners via the function returned by subscribe(listener).
+
+		There is only one Store in entire application
+		
+
+Data Flow
+		createStore(RootReducer) - is used to create single store - RootReducer is obtained by combining all reducers in system
+		store.dispatch(actioncreator()) - dispatch actions
+	    the Redux store calls the reducer function you gave it
+		
+
+CombineReducers
+		
+		takes an object with reducer functions as members
+		all reducers will be called with state.reducerName and state with keys as function names and return values of function invocation as state entry value will be built 	
+		
+		e.g 
+		
+		reducer = combineReducers({ funcA, funcB});
+		state will have 2 keys - funcA, funcB with values got from invokation of funcA, funcB 
+
+-----------------------------------------------------------------------
+Usage in react
+-----------------------------------------------------------------------
+
+ReactRedux
+				
+        connect 
+			- is used to connect and make ui component to container component
+			- it accepts 2 functions mapStateToProps, mapDispatchToProps and a component
+			mapStateToProps -  state) => { return { propA: mapperFromStateTpPropA() } }
+			mapDispatchToProps - (dispatch) => { return { eventHandler(e){ dispatch(ActionCreator(e)) } } }
+			
+		Provider 
+			- make state available to all components in an app
+		
+-----------------------------------------------------------------------
+Async Action creators - Middleware
+-----------------------------------------------------------------------
+
+Redux Thunk
+		can be used to dispatch thunks(functions which delay some action) as actions
+		
+		a thunk should accept as params ( dispatch, getState ) 
+		
+		a thunk can dispatch normal actions as well as other thunks - thus allowing for building complex flows
+		
+		
+Redux Promise
+
+	

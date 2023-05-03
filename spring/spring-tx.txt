@@ -1,0 +1,117 @@
+1. Basics of transaction management in spring
+
+
+PlatformTransactionManager   
+	TransactionStatus getTransaction(TransactionDefinition)
+	void commit(TransactionStatus status)
+	void rollback(TransactionStatus status)
+	
+
+	all methods throw TransactionException - unchecked(runtime exception)
+	
+	
+
+TransactionDefinition
+	propogation
+	isolation
+	timeout
+	readonly
+	
+TransactionStatus
+	isNewTransaction
+	hasSavePoint
+	setRollbackOnly
+	isRollbackOnly
+	isCompleted
+	flush
+	
+
+2. PlatformTransactionManager instance is required irrespective of transaction management strategy
+
+
+
+
+EntityManagerFactoryUtils
+
+
+	
+3. Declarative - using AOP
+
+
+
+	Using XML
+
+	a. <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	   </bean>
+
+
+	b.
+	    declare 	
+		tx:advice takes a ref to txmanager
+
+		<tx:advice id="txAdvice" transaction-manager="txManager">
+			<tx:attributes>
+			<tx:method name="get*" read-only="true" rollback-for="<<list of exceptions>>" no-rollback-for="<<list of exceptions>>"/>
+			<tx:method name="*"/>
+			</tx:attributes>
+		</tx:advice>
+
+
+	    declare
+		<aop:config>
+			<aop:pointcut id="fooServiceOperation" expression="execution(*
+				x.y.service.FooService.*(..))"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="fooServiceOperation"/>
+		</aop:config>
+
+
+
+
+	    Rollback on unchecked excpetions
+
+	    you can register what exceptions will result in rollback by using 
+	    rollback-for attribute on tx:method
+
+
+	Using code
+
+	    a. @Transactional on some db related code
+	    b. <tx:annotation-driven transaction-manager="txManager"/> which does all the initialization work
+
+	    internally - see http://doanduyhai.wordpress.com/2011/11/20/spring-transactional-explained/
+    
+
+
+
+
+
+Programatic - TransactionTemplate approach
+
+
+	A service class with ref to PlatformTransactionManager
+	
+		TransactionTemplate = new(PlatformTransactionManager)
+	
+		
+		transactionTemplate.execute()
+		
+		TransactionCallback() - dointransaction
+		TransactionCallbackWithoutResult()
+		
+ 
+Programatic - PlatformTransactionManager
+	
+	DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+	def.setName("SomeTxName");
+	def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+	
+	TransactionStatus status = txManager.getTransaction(def);
+	try {
+	
+	}
+	catch (MyException ex) {
+		txManager.rollback(status);
+		throw ex;
+	}
+	txManager.commit(status);

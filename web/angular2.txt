@@ -1,0 +1,83 @@
+Concepts
+---------------------
+Template
+Component
+Module
+Injector
+Directive
+Pipes
+Decorators (Annotations)
+are used to add information to javascript class
+e.g  @Component({selector,templateurl,directives,providers,inputs,outputs})
+
+
+
+Template
+---------------------
+
+{{ SOME_VAR }} for referencing a var in template
+[HTML_ATTR] = value
+
+[SOME_VAR_IN_CHILD marked as @Input]  = VAR_IN_ME - for passing var in this class to input of child component
+(event) = method in me
+
+[(ngModel)]="hero.name" - two way data binding
+
+EventEmiter + @Output  - if you want to ouptput something from child component to parent component
+
+(EventEmiter_VAR_IN_CHILD marked as @Output) = function_in_me
+
+
+
+Module
+---------------------
+@NgModule({imports,declarations,exports,providers,bootstrap})
+MyModule1
+
+organize an application into cohesive blocks of functionality.
+
+load components on demand using treeshaking 
+
+
+Component - Lifecycle hooks
+-----------------------------------
+
+ngOnChanges	 - before ngOnInit and when a data-bound input property value changes.
+
+ngOnInit	 - after the first ngOnChanges.
+
+ngDoCheck	 - during every Angular change detection cycle.
+
+ngAfterContentInit - after projecting content into the component.
+
+ngAfterContentChecked - after every check of projected component content.
+
+ngAfterViewInit	 - after initializing the component's views and child views.
+
+ngAfterViewChecked	- after every check of the component's views and child views.
+
+
+ngOnDestroy	- just before Angular destroys the directive/component.
+
+
+
+Directives
+---------------------
+
+*ngFor  - iterator - let item of items
+*ngIf   - if else for conditional rendering
+
+ngControl  - ??
+
+
+DependencyInjection
+-----------------------------------
+
+@Injectable() - mark a class as provider
+@Inject() - inject a class
+
+provide - 
+
+
+
+

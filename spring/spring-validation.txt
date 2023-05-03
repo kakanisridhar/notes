@@ -1,0 +1,18 @@
+Spring supports bean validation
+
+Spring validation api - you may need it if you want to configure validation per DataBinder
+
+
+
+org.springframework.validation.Validator
+	::supports
+	::org.springframework.validation.Errors validate
+
+
+ValidationUtils	
+	various rejectIf**** methods to generate errors
+
+usese MessageCodesResolver, MessageResolvers to compose rejection messages from properties file
+
+
+	

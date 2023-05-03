@@ -1,0 +1,19 @@
+1. ducktyping
+
+def = someVar from the parent construct
+
+
+2. Array notation def var1 = [
+	declarations
+]
+
+iterating over an array using each and iteraion variable it 
+
+var1.each {
+	
+	println "${it.attrib1} ${it.attrib2}"
+}
+
+3. implicit main method
+
+?? all code blocks get executed as main function call???

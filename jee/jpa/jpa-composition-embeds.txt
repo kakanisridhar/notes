@@ -1,0 +1,18 @@
+Embedding Objects
+
+  
+  These are value types which have no identity of there own.
+  
+  Though they are developed as seperate classes for oops purpose they end up in the same table of an entity class.
+    
+ 
+ @Embeddable - 
+	Specifies a class whose instances are stored as an intrinsic part of an owning entity and share the identity of the entity. 
+	Each of the persistent properties or fields of the embedded object is mapped to the database table for the entity. 
+	
+ @Embedded
+        Specifies a persistent field or property of an entity whose value is an instance of an embeddable class. 
+        
+        
+ 
+@Embeddable objects can contain relations to other entities as similar to their parent entities   

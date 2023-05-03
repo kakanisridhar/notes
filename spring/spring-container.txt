@@ -1,0 +1,15 @@
+
+BeanPostProcessor - interface that needs to be implemented for knowing bean registrations
+
+	postProcessBeforeInitialization
+	postProcessAfterInitialization
+	
+	
+This ia just a bean, alas a speacial one, can use oredered interface
+
+
+
+FactoryBean
+
+
+

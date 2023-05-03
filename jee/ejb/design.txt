@@ -1,0 +1,5 @@
+loadbalancing -- see http://docs.oracle.com/cd/E13222_01/wls/docs81/cluster/load_balancing.html
+heartbeat - 
+failover - http://docs.oracle.com/cd/E13222_01/wls/docs81/cluster/failover.html#1032777
+management 
+services in a cluster

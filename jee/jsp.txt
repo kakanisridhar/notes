@@ -1,0 +1,93 @@
+
+
+comments:
+	JSP
+	<%-- comment here --%>
+	HTML
+	<!-- [comments here] -->
+	
+	
+Directives:
+         
+         <%@ directive attribute="value" %>
+         
+         <%@ page ... %>	Defines page-dependent attributes, such as scripting language, error page, and buffering requirements.
+	 <%@ include ... %>	Includes a file during the translation phase.
+	 <%@ taglib ... %>	Declares a tag library, containing custom actions, used in the page
+	 
+
+Actions:
+
+	  jsp:include		Includes a file at the time the page is requested
+	  
+	  jsp:useBean		Finds or instantiates a JavaBean
+	  jsp:setProperty	Sets the property of a JavaBean
+	  jsp:getProperty	Inserts the property of a JavaBean into the output
+	  
+	  jsp:forward		Forwards the requester to a new page
+	  
+	  jsp:text		Use to write template text in JSP pages and documents.
+	  
+	  jsp:plugin		Generates browser-specific code that makes an OBJECT or EMBED tag for the Java plugin
+	  
+	  jsp:element		Defines XML elements dynamically.
+	  jsp:attribute		Defines dynamically defined XML element's attribute.
+	  jsp:body		Defines dynamically defined XML element's body.	 
+	 
+
+Scriptlet:
+         A scriptlet can contain any number of JAVA language statements, variable or method declarations, 
+         or expressions that are valid in the page scripting language.   
+         
+         syntax:  	<% code fragment %>
+         
+         xml-syntax:    <jsp:scriptlet>
+			   code fragment
+			</jsp:scriptlet>
+
+	Disabling Scripting Elements:
+
+		With the advance of the Expression Language in JSP 2.0, the recommended practice is to use the EL to access server-side objects and not to write Java code in JSP pages. 
+		For this reason, starting JSP 2.0 scripting elements may be disabled by defining a scripting-invalid element within <jsp-property-group> in the deployment descriptor.
+
+		<jsp-property-group>
+		    <url-pattern>*.jsp</url-pattern>
+		    <scripting-invalid>true</scripting-invalid>
+		</jsp-property-group>
+	  
+	  
+implicit objects:
+
+	 
+	request		javax.servlet.http.HttpServletRequest
+	 
+	response	javax.servlet.http.HttpServletResponse
+	 
+	out		javax.servlet.jsp.JspWriter
+	 
+	session		javax.servlet.http.HttpSession
+	 
+	application	javax.servlet.ServletContext
+	 
+	config	 	javax.servlet.ServletConfig
+	 
+	pageContext	javax.servlet.jsp.PageContext		mainly used for EL. usefulmethod setAttribute(name,object,scope)
+	 
+	page		javax.servlet.jsp.HttpJspPage
+	 
+	exception	java.lang.Throwable
+	 
+
+
+
+
+Error handling
+
+
+	page - errorPAge = somepage.jsp
+	
+	and in somepage.jsp   ->  page - isErrorPage = true
+	
+	pageContext.errorData.requestURI	
+	pageContext.errorData.statusCode
+	pageContext.exception.stackTrace

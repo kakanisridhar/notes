@@ -1,0 +1,38 @@
+checked exceptions - should be caught
+unchecked exceptions - errors , RuntimeExceptions - no use catching them
+
+
+1. normal try catch
+
+try 
+{
+}
+catch(lowerinhierarchy )
+{
+}
+catch(higherinhierarchy)
+{
+}
+finally
+{
+
+}
+
+
+2. try with resources
+
+try(autocloseable;closeable)
+{
+}
+catch()
+{
+}
+
+
+
+3. Catching More Than One Type of Exception with One Exception Handler
+
+catch (IOException|SQLException ex) {
+    logger.log(ex);
+    throw ex;
+}

@@ -1,0 +1,22 @@
+1. SSL
+
+cacerts - is a truststore. A trust store is used to authenticate peers.
+ 
+keytool  - A keystore is used to authenticate yourself.
+
+
+2. SSL client program
+
+install openssl
+
+openssl.exe pkcs12 -in C:\Users\srkakani\Desktop\GTR\dtcc.crt -out C:/certs/dtcc.txt -nokeys -clcerts
+
+openssl.exe x509 -in C:/certs/dtcc.txt -outform DER -out C:/certs/dtcccacert.der
+
+cd to jdk for e.g D:\GIT\TO\vendors\etc\win64\jdk1.7.0_10
+
+keytool -import -file C:/certs/dtcccacert.der -keystore mytruststore
+
+asks for pasword enter it  - 
+
+ask for trust enter y

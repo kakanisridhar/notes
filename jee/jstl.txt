@@ -1,0 +1,84 @@
+    Core: http://java.sun.com/jsp/jstl/core
+
+    XML: http://java.sun.com/jsp/jstl/xml
+
+    Internationalization: http://java.sun.com/jsp/jstl/fmt
+
+    SQL: http://java.sun.com/jsp/jstl/sql
+
+    Functions: http://java.sun.com/jsp/jstl/functions
+
+
+
+
+operators
+	
+	+, -, *, / or div % or mod
+	&& or and || or or ! or not
+	
+	== eq , != ne, < lt , > gt <=le >=ge	
+	
+	exp1 ? exp2: exp3
+	
+	empty
+	
+	[] for accessing coolections
+	
+
+implicit objects
+
+	PageScope : Page scope
+	RequestScope : Request scope
+	SessionScope : Session scope
+	applicationScope : Application scope 
+	Param : Request parameter (single value)
+	paramValues : Request parameter (multiple values)
+	initParam : Context initialization parameter
+	Cookie : Value of a cookie
+	pageContext : Current page information
+	header	: Header sent by the browser
+	headerValues :All values of a header
+
+
+
+
+<c:set  var="variable-name"  value="expression" scope=""scope" />   -  for setting values
+
+<c:out value="expression" default="default text" escapeXml="true|false" />
+
+<c:remove var="variable-name" scope="scope" />
+
+<c:if test="condition">
+ 	code
+</c:if>
+
+
+<c:choose>
+  <c:when test="condition">
+   code
+  </c:when>
+  <c:when test="condition">
+   code
+  </c:when>
+  ...
+  ...
+  <c:otherwise>
+   code
+  </c:otherwise>
+</c:choose>
+
+
+<c:forEach items="collection" var="variable"
+           begin="start-index" end="end-index"
+           step="step-increment"
+           varStatus="current_iteration_status">
+   code
+</c:forEach>
+
+
+<c:forTokens items="string" delims="delimiters" var="variable"
+              begin="start-index" end="end-index"
+             step="step-increment"
+              varStatus="current_iteration_status">
+   code
+</c:forTokens >

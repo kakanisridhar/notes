@@ -1,0 +1,20 @@
+
+a. container extension
+
+b. container lifecycle
+
+c. HierarchicalBeanFactory
+
+d. Hierarchial message sources
+
+
+a. CustomAutowireConfigurer
+
+Can be used to register application defined qualifiers
+
+	<property name="customQualifierTypes">
+		<set>
+		<value>example.CustomQualifier</value>
+		</set>
+	</property>
+

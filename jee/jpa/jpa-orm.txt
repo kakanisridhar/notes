@@ -1,0 +1,185 @@
+
+Directionality  - uni or bi directional
+                  consider bidirectional as 2 uni directional relations   
+
+Cardinality - one to one/ many to one / one to many / many to many
+
+
+Ordinality - whether the relationship is mandatory/present at the time of creation
+
+
+Cascadetype - Which em operations(merge,detach,refresh,remove,persist) on entity will result in same operations on related entities 
+
+
+OrphanRemoval - what happens to related objects when relation ship is set to null.
+
+
+
+
+****************************************************************************************************
+
+Single Valued Associations
+
+
+@OneToOne
+		Employee -- Desk
+		
+		in uni directional rel Desk will not have refere to employee 
+		
+		in bi directional Desk will have employee and @OneToOne(mappedby="desk")
+		
+		
+		**Desk will be persisted with employee if only(CascadeType=ALL)
+		**Desk cannot persist an employee as it is not owner of relation
+		
+		
+		
+@JoinColumn    Customize foreign key col name
+
+@ManyToOne	
+		This can be uni directional or bi directional.
+		
+		Employee <--> Department    
+		
+		with employee the owning side(maintainer of relationship not the owner)
+		
+		**Better to have many side as the owning side. otherwise number of queries executed will be phenominal
+		
+		Trade -> Currency
+
+
+****************************************************************************************************
+                 
+
+Collection-Valued Associations
+		
+		
+@OneToMany	bi directional
+		
+			This is non owning side of manytoone mapping
+			@OneToMany(mappedby=)
+			
+			Department <--> Employee
+		
+		Uni directional
+		
+			by using @JoinTable
+			
+			Employee -- Phones
+			
+				actually phones is not an entity(it should be collection mapping)
+				but here fore example purpose
+				
+
+			@Entity
+			public class Employee {
+			    @Id private long id;
+			    private String name;
+			    @OneToMany
+			    @JoinTable(name="EMP_PHONE",
+				  joinColumns=@JoinColumn(name="EMP_ID"),
+				  inverseJoinColumns=@JoinColumn(name="PHONE_ID"))
+			    private Collection<Phone> phones;
+			}
+				
+			
+		Set is the default data structure used for mapping			
+			
+
+@ManyToMany
+		Employee --- Project
+		
+		specified using ManyToMany and JoinTable anns
+		
+		
+		@Entity
+		public class Employee {
+		    @Id private long id;
+		    private String name;
+		    
+		    @ManyToMany
+		    @JoinTable(name="EMP_PROJ",
+		              		joinColumns=@JoinColumn(name="EMP_ID"),
+		          inverseJoinColumns=@JoinColumn(name="PROJ_ID"))
+		    private Collection<Project> projects;
+		}
+		
+		@Entity
+		public class Project {
+		    @Id private long id;
+		    private String name;
+		    @ManyToMany(mappedBy="projects")
+		    private Collection<Employee> employees;
+		}
+
+
+
+
+
+
+
+
+*****************************************************************************
+
+
+AssociationOverride  -   Used to override a mapping for an entity relationship. 
+                         May be applied to an entity that extends a class annotated with MappedSuperclass to override a relationship mapping defined by the superclass.
+                         
+AssociationOverrides - set of AssociationOverride
+
+AttributeOverride
+AttributeOverrides   - overrides for subclass 
+
+       
+ColumnResult           
+
+ElementCollection
+Embeddable
+Embedded
+EmbeddedId
+EntityListeners
+EntityResult
+Enumerated
+ExcludeDefaultListeners
+ExcludeSuperclassListeners
+FieldResult
+
+
+JoinColumns
+JoinTable
+ManyToMany
+
+
+MapKeyClass
+
+MapKeyJoinColumn
+MapKeyJoinColumns
+
+MapKeyTemporal
+
+MapsId
+
+NamedNativeQueries
+NamedNativeQuery
+NamedQueries
+NamedQuery
+
+
+
+
+
+PostLoad
+PostPersist
+PostRemove
+PostUpdate
+PrePersist
+PreRemove
+PreUpdate
+
+QueryHint
+
+SqlResultSetMapping
+SqlResultSetMappings
+
+
+Version

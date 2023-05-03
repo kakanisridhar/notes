@@ -1,0 +1,83 @@
+
+lambdas - introduction
+https://www.youtube.com/watch?v=bzO5GSujdqI
+*************************************************************
+
+Functional Interface - Predicate
+
+
+
+predicate - taking object of any type and return boolean
+
+interface Predicate<T>:: boolean test(T)
+
+
+
+passing predicate
+
+             implement anonymous functions
+             
+             lambdas 
+             
+             T -> expression evaluating to boolean 
+             
+             -> is called such that 
+             
+             expression lambdas
+             
+             
+
+
+
+Functional Interface - Block
+
+
+interface Block<T>:: void apply(T)
+
+takes a param and return void - but does some work 
+
+how do you work
+
+           T -> { dowork(T) }
+           
+           
+how will calling programs work
+
+         
+         Block<T> block
+         
+         block.apply(T)
+         
+
+
+
+
+Functional Interface - Mapper
+
+
+Mapper<T,U> :: U map(T)
+
+
+
+general functional programming stream line
+
+filter
+map
+apply
+
+
+
+
+stream() -  way of iterating serially
+
+parallel() - way of iterating using multiple threads/processor 
+
+
+************************************************************
+
+@FunctionalInterface  - define an interface which can be used in lambda expressions
+
+                      - onlt one abstract method allowed
+
+
+

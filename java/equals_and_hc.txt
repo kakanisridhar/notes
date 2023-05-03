@@ -1,0 +1,5 @@
+floatToIntBits - converting float to bytes
+doubleToLongBits - converting double to bytes
+
+default implementation of eclipse hashcode and equals is good enough
+

@@ -1,0 +1,7 @@
+
+I - AttributeConverter
+
+@Converter
+
+date persistence = DateTime - jodatime - persist as number using DateTimeUtils.tojuliandate
+

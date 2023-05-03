@@ -1,0 +1,50 @@
+_app.js - entrypoint for nextjs , alternatively we can use Layout from next
+
+userRouter  - to get access to router, router.pathname == "yourpathname"
+			  router.push can force client side navigation
+
+getStaticProps - special function to fetch static data , should return { "props": "value", "revalidate":revalidate time}
+
+
+somefolder/[name].js - dynamic pages generated under "somefolder/name"
+
+getStaticPaths - should retun an object of {paths, fallback} - where paths is like {params: {paramname: value}}
+				 paramname should match the name inside []
+
+
+getServerSideProps - load dynamic data on server
+
+somename.module.css - for css module instead of global style
+
+(site) in parentheses? 
+By using parenthesis, we make the directory site "pathless", 
+which means we can create new layouts, loading files, and pages in the site directory, 
+without adding a new path segment to the routing.
+
+
+Link  - next/link
+Image -
+
+
+next13 - adding a folder under app is the way to add new web pages
+About/page.jsx
+layout.jsx adds layouts to child pages too 
+loading.jsx will show loading indicator
+
+export const metadata - to export title and description
+
+
+
+api folder
+    folder - which acts as path
+        route.js - define api handler functions
+            export async function GET(request){
+                return new Rsponse("content")
+            }
+        data.js - if static json 
+
+import NextResponse from nextjs/server
+NextResponse.json()
+
+
+

@@ -1,0 +1,70 @@
+Sitemesh builds pages by decorating the pages
+
+this is in contrast to tiles which is a view composition framework 
+
+in a typical web application this decoration is done using filter  - com.opensymphony.sitemesh.webapp.SiteMeshFilter
+
+this filter reads sitemesh.xml decorators.xml under WB-INF
+
+
+configuration -  exclusion paths
+		 inclusion paths
+		 page parsers	
+		 decorators
+
+
+page parsers - com.opensymphony.module.sitemesh.parser.HTMLPageParser
+
+got tutorial is on thier website - http://wiki.sitemesh.org/display/sitemesh/Decorating+Beyond+URL+Patterns
+
+
+
+some examples
+
+taglib - sitemesh-dcorator  , uri - dec
+
+dec:isPropertySet name="meta.XYZ" 
+	dec:getProperty property="meta.XYZ" 
+	
+dec:title
+dec:body
+dec:getProperty property="body.bgcolor"
+
+
+
+inline decorator
+
+	
+taglib - sitemesh-page  , uri - page
+
+page:applyDecorator , name= ,page=
+
+page:param name=
+
+
+
+for passing properties directly to decorator - 
+	content tag = breadcrumbs
+		a
+		a	
+		a
+
+in decorator declare 
+	dec:getProperty property=page.breadcrumbs
+
+
+
+
+
+
+******************************************************************
+Sitemesh3
+http://wiki.sitemesh.org/wiki/display/sitemesh3/Getting+Started+with+SiteMesh+3
+
+
+
+
+
+
+
+

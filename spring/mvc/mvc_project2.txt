@@ -1,0 +1,127 @@
+Spring mvc easy way
+*********************
+
+
+1. create a new spring template project
+2. add final name to build section in pom.xml
+3. add tomcat 7 maven plugin 
+
+	   <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <path>/${project.artifactId}</path>
+                    <port>8080</port>
+                </configuration>
+            </plugin>
+            
+            
+mvn tomcat7:run
+
+
+
+********************
+
+RequestMapping
+
+	@RequestMapping
+	
+	params	
+		value - url
+		method - http method
+		
+		consumes - use it for Content-Type header specific applications
+		produces -
+		
+		params -  param-name=param-value , param-name!=param-value, !param-name
+		headers - same as above 
+		
+
+Controller
+
+	Declare by using @Controller annotation
+	
+	
+	XML config
+
+	<context:component-scan base-package="com.mridasoft.learning.spring.mvc"/>
+
+	<mvc:annotation-driven />
+	
+	
+	javaConfig
+	
+	create an instance of WebApplicationInitializer 
+	overrid onStartup method
+	
+
+
+Request-Handling Method - params
+	
+	Params that can be used in methods used for request handling
+	
+	ServletRequest and its derivatives - ServletRequest, HttpServletRequest, MultipartRequest, MultipartHttpServletRequest, WebRequest, NativeWebRequest, InputStream, Reader
+	ServletResponse and its derivatives - same as above
+	
+	Principal - user logged in
+	Locale
+	
+	Errors
+	BindingResult
+	
+	RedirectAttributes
+	
+	
+	Annotations on params
+	
+	@RequestParam
+	@ModelAttribute
+	@Valid
+	
+	and many more
+	
+	
+Request-Handling Method - return types
+
+	ModelAndView
+	Model
+	ModelMap
+	View
+	String - if @ModelAttribute present then addedto model otherwise it is a viewname
+	
+	HttpEntity
+	ResponseEntity
+	
+	if no view is present then RequestToViewNameTranslator is used to determine the view
+	
+
+
+HandlerMethodArgumentResolver 
+
+HandlerMethodReturnValueHandler 
+
+are used to handle params and return types respectively
+
+
+*****************************
+
+Model
+
+
+model 
+
+validation
+
+conversion
+
+databinding
+
+
+
+****************************
+View
+
+
+
+

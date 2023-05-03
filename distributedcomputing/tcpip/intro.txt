@@ -1,0 +1,59 @@
+Internet Protocol (IP) - Network Layer protocol
+
+provides a datagram service: 
+every packet is handled and delivered by the network independently, like letters or parcels sent via the postal system. 
+To make this work, each IP packet has to contain the address of its destination, just as every package that you mail is addressed to somebody. 
+Although most delivery companies guarantee delivery of a package, IP is only a best-effort protocol: 
+it attempts to deliver each packet, but it can (and occasionally does) lose, reorder, or duplicate packets in transit through the network.
+
+
+TCP -  transport layer protocol
+
+port numbers identify address of an application on specific machine
+
+is designed to detect and recover from the losses, duplications, and other errors that may occur in the host-to-host channel provided by IP
+
+
+UDP - transport layer protocol
+
+
+IPv4
+
+	IPv4 addresses are 32 bits
+	IPv4 addresses are conventionally written as a group of four decimal numbers separated by periods (e.g., 10.1.2.3); 
+	this is called the dotted-quad notation. 
+	The four numbers in a dotted-quad string represent the contents of the four bytes of the Internet address, thus, each is a number between 0 and 255.
+	
+	loopback - 127.0.0.1
+		 - anything starting with 127.
+	private use - 
+		starts with 10 or 192.168
+		startw with 172.6 or 172.31
+
+	link-local
+		starts with 69.254
+	
+	multicast
+		224 to 239
+	
+
+IPv6	
+	IPv6 addresses are 128 bits long(16 bytes).
+        represented as groups of hexadecimal digits, separated by colons (e.g., 2000:fdb8:0000:0000:0001:00ab:853c:39al). 
+        
+        loopback - 0:0:0:0:0:0:0:1
+        
+        link-local
+        	starts with FE8
+        	
+        multicast
+        	starts with FF
+        	
+
+
+stream sockets 
+
+
+
+
+datagram sockets.        	

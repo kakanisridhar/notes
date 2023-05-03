@@ -1,0 +1,49 @@
+
+One To One relation
+
+	employee - > desk 	uni directional # optional # hence no orphan removal
+        
+        user <-> userprofile    bi directional# shared primary key # mandatory # orphan removal
+        user <-> membership     bi directional# shared primary key # mandatory # orphan removal
+        
+        employee - employeeinfo         
+        
+
+@OneToOne(cascade,fetch,mappedBy,optional,orphanRemoval,targetEntity)         
+        
+
+        specify optional if relation is not mandatory and FK can be null
+        
+        specify cascade if dependent objects have to be persisted/updated when parent objects are persisted to db
+        
+        specify orphanRemoval if related objects have to be deleted when parent is deleted
+
+
+Using foreign keys
+
+
+	@JoinColumn - if foreign key has to be customized
+
+	owning side of relation must contian @JoinColumn
+
+	and non owning side using mappedBy attribute in @OneToOne
+
+
+Using Shared primary keys 
+
+	@MapsId on the owning side of relation
+
+	e.g User <- UserProfile
+	    User <- Membership
+
+
+	    use OneToOne on userprofile and membership
+		however user cannot be the owning side of the relation
+
+	    use OneToOne and MapsId on user relation of userprofile and membership.    
+
+
+
+ 
+
+

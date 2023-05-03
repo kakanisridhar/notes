@@ -1,0 +1,111 @@
+Servlet interface
+
+	void init(ServletConfig config) throws ServletException - store it in class variable. 
+	void service(ServletRequest request, ServletResponse response) throws ServletException, java.io.IOException
+	void destroy()
+	java.lang.String getServletInfo()
+
+*Servlet is shared by many threads- so no class level data
+
+
+ServletRequest interface
+
+	public int getContentLength() Returns the number of bytes in the request body 0r -1 
+
+	public java.lang.String getContentType() -  MIME type of the request body or null
+
+	public java.lang.String getParameter(java.lang.String name)Returns the value of the specified request parameter.
+
+	public java.lang.String getProtocol()
+	
+	
+ServletConfig  - configuration for a servlet
+
+	java.lang.String getInitParameter(java.lang.String name) - init param of servlet
+	
+	java.util.Enumeration<java.lang.String> getInitParameterNames()
+	
+	ServletContext getServletContext()  - gets servlet context
+	
+ServletContext - represents the servlet application 
+
+	used for storing application level attributes
+	used for registering webobjects dynamically
+	create[filter,listener,servlet], [FilterRegistration.Dynamic,null,ServletRegistration.Dynamic] add[filter,listener,servlet] - new in 3.0 spec for registering dynamically
+	
+
+ServletContainerInitializer  - interfaces through which frameworks can initialize
+
+	must implement - void onStartup(java.util.Set<java.lang.Class<?>> klazz,
+	        ServletContext servletContext)
+
+        must have class level annotation @HandleTypes 
+        
+        reguistered with an entry in text file MET-INF/services/javax.servlet.ServletContainerInitializer
+
+	
+	
+GenericServlet - class implementing  Servlet and ServletConfig interfaces.	
+
+	getServletConfig()
+
+
+HttpServlet extends GenericServlet
+	
+
+two features in HttpServlet that you do not find in GenericServlet:
+
+Instead of the service method, you will override doGet, doPost, or both of them. In rare cases, you will also override any of these methods: doHead, doPut, doTrace, doOptions, doDelete.
+
+You will work with HttpServletRequest and HttpServletResponse, instead of ServletRequest and ServletResponse.
+
+
+
+
+Servlet Declaring
+
+	web.xml
+		<servlet> and <servlet-mapping>
+	
+	annotations
+
+		@WebServlet(urlparams, initparams(@WebInitParam)....)  - classs level annotaion for declaring a servlet
+
+HttpServletRequest
+
+
+	java.lang.String getContextPath()Returns the portion of the request URI that indicates the context of the request.
+
+
+	Cookie[] getCookies()Returns an array of Cookie objects.
+
+
+	java.lang.String getHeader(java.lang.String name)Returns the value of the specified HTTP header.
+
+
+	java.lang.String getMethod()Returns the name of the HTTP method with which this request was made.
+
+
+	java.lang.String getQueryString()Returns the query string in the request URL.
+
+
+	HttpSession getSession()Returns the session object associated with this request. If none is found, creates a new session object.
+
+
+	HttpSession getSession(boolean create)Returns the current session object associated with this request. If none is found and the create argument is true, create a new session object.
+
+
+
+HttpServletResponse	
+	
+	void addCookie(Cookie cookie)Adds a cookie to this response object.
+	
+	
+	void addHeader(java.lang.String name, java.lang.String value)Adds a header to this response object.
+	
+	
+	void sendRedirect(java.lang.String location)Sends a response code that redirects the browser to the specified location.
+	
+
+
+

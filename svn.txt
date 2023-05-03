@@ -1,0 +1,4 @@
+for getting svn update number from ant http://code.google.com/p/svntask/
+
+in maven use buildnumber plugin
+

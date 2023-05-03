@@ -1,0 +1,23 @@
+
+maven configuration - lifecycle phases, goals ,plugins
+ 
+lifecycle phases - all executed with default goals
+
+plugins 
+
+
+
+
+
+
+
+maven best practices 
+
+
+use 1 for versioning in parent child properties
+and use a property for artifact versioning
+
+add all version numbers for third party dependencies as properties.
+
+
+

@@ -1,0 +1,147 @@
+
+spring MVC is an implementation of Front Controller Pattern
+
+
+Initialization
+
+
+web.xml
+	DispatcherServlet
+	contextConfigLocation as init param
+	looks for servletName-servlet.xml in WEB-INF if above param is not supplied
+Java	
+
+        using servlet 3.0.1 api
+        implement WebApplicationInitializer
+        more details in this blog
+        http://kielczewski.eu/2013/11/spring-mvc-without-web-xml-using-webapplicationinitializer/
+
+
+Workflow/Architecture 
+
+	Prepare a Request
+		Determine locale
+		Strore request context in holder
+		Restore Flashmap ( Redirect attributes)
+		ResolveMultipart using multipartresolver (if it is multipart request)
+	
+	Determine the HandlerExecutionChain
+	
+		Use HandlerMappings to find out HandlerExecutionChain(most used RequestMappingHandlerAdapter,HttpRequestHandlerAdapter)
+		if none found send 404
+		
+	Execute the HandlerExecutionChain
+			
+		main task is to return Handler
+		Most work is delegated to HandlerAdapter which supports above handler
+		HandlerAdapters typically use
+			interceptors - prehandle, post handle, afterCompletion
+			controllers
+		to handle request and retutn model/view
+		
+		HandlerInterceptors and their lifecycle methods are invoke
+		
+	Handle Exceptions
+	
+		Consult any HandlerExceptionResolvers if an exception occured
+	
+	Render a View
+	
+		if view is returned then view is resolved with ViewResolvers
+		else RequestToViewNamTranslator is used to translate from request to viewname and then proceed as above
+		
+	Finish the Processing
+
+
+		afterCompletion and RequestCompleted events are fired 	
+	
+
+
+
+	1. The WebApplicationContext is searched for and bound in the request as an attribute that the controller and other elements in the process can use. 
+	   It is bound by default under the key DispatcherServlet.WEB_APPLICATION_CONTEXT_ATTRIBUTE.
+	2. The locale resolver is bound to the request to enable elements in the process to resolve the locale to use when processing the request (rendering the view, preparing data, and so on).
+	   If you do not need locale resolving, you do not need it.
+	3. The theme resolver is bound to the request to let elements such as views determine which theme to use. If you do not use themes, you can ignore it.
+	4. If you specify a multipart file resolver, the request is inspected for multiparts; 
+	   if multiparts are found, the request is wrapped in a MultipartHttpServletRequest for further processing by other elements in the process. 
+	5. An appropriate handler is searched for. If a handler is found, the execution chain associated with the handler (preprocessors, postprocessors, and controllers) 
+	   is executed in order to prepare a model or  rendering.
+	6. If a model is returned, the view is rendered. If no model is returned, (may be due to a preprocessor or postprocessor intercepting the request, perhaps for security reasons), no view is    rendered, because the request could already have been fulfilled.
+
+
+
+Important interfaces
+
+
+
+	HandlerMapping
+	HandlerAdapter
+	
+	HandlerExceptionResolver
+	
+	ViewResolver
+	RequestToViewNameTranslator
+	
+	FlashMapManager
+	
+	ThemeResolver
+	LocaleResolver
+	MultipartResolver
+	
+	
+	
+	
+	HandlerInterceptor
+	WebBindingInitializer
+	Controller
+	ModelAndView
+
+	HandlerMethodArgumentResolver
+	HandlerMethodReturnValueHandler
+
+
+HandlerMappings
+	
+	
+	mvc:resources   - for serving static resources from a directory
+	mvc:annotation-driven - for serving dynamic data using constrollers
+	
+
+	by including this tags you are defining many things  - see WebMvcConfigurationSupport
+	
+	
+	some of the pre defined handler mappings
+	
+	SimpleUrlHandlerMapping  
+		param mappings - list of url=controller values
+		
+	RequestMappingHandlerMapping - handling annotated controllers
+	
+	BeanNameUrlHandlerMapping - maps url to bean name
+	
+	
+	Supports ordered interface - lowest order will be given first preference
+	
+	
+	ordering e.g - http://www.mkyong.com/spring-mvc/configure-the-handler-mapping-priority-in-spring-mvc/
+	
+
+
+
+HandlerAdapter
+
+	main aim is to return ModeAndView
+	
+	Not declared indiviudally but mvc tags in config xml defines default handlerAdapters
+	
+
+
+ViewResolver
+
+	
+	InternalResourceViewResolver
+		prefix
+		suffix
+		exposedContextBeanNames  - expose beans to view layer
+		exposeContextBeansAsAttributes - expose all beans to view layer 

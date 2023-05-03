@@ -1,0 +1,245 @@
+Spring Data JPA removes much boilerplate from repository code and QueryDSL can be used to create clean and reusable query specifications. 
+When combined, we can create powerful repositories with very little code.
+
+Introduction
+
+Repositories are used to retrieve and modify content from a data storage. 
+Most repository implementations consist of boilerplate code that interacts with the desired ORM,for example an EntityManager when using JPA. 
+Spring has created the Spring Data JPA project to eliminate this boilerplate repository code.
+
+
+Spring Data JPA
+
+Spring Data JPA can be used to dramatically minimize, and often even eliminate, a repository implementation. Imagine having the following domain class:
+
+@Entity
+public class User {
+
+ @Id
+ @GeneratedValue(strategy = GenerationType.AUTO)
+ private Long id;
+
+ private String username;
+ private String firstname;
+ private String lastname;
+
+ ...
+}
+
+With plain Spring and JPA we would build the following repository implementation:
+
+@Repository
+public class JpaUserRepository implements UserRepository {
+
+ @PersistenceContext
+ private EntityManager em;
+ 
+ public Iterable<User> findAll() {
+  return em.createQuery(
+    "from User", User.class
+   ).getResultList();
+ }
+
+ public User findByUsername(String username) {
+  return em.createQuery(
+    "from User where username = :username", User.class
+   ).setParameter("username", username).getSingleResult();
+ }
+
+ public User save(User user) {
+  if(user.getId() == null) {
+   em.persist(user);
+  } else {
+   user = em.merge(user);
+  }
+  return user;
+ }
+}
+
+Much of the above repository implementation is boilerplate and can be generalized. This is where Spring Data JPA kicks in.
+
+When using Spring Data JPA, we only need to define a repository interface, and the implementation will be provided automatically. So we define the repository interface:
+
+public interface UserRepository
+ extends CrudRepository<User, Long> {
+ User findByUsername(String username);
+}
+
+And activate the automatic repository implementations in our application context:
+
+<jpa:repositories base-package="com.myproject.repository" />
+
+Now whenever we wire the UserRepository, we will recieve a fully functional repository implementation automatically.
+The repository will have full CRUD functionality, due to extending the CrudRepository interface, but also custom find behaviour.
+
+Inside the repository interface we defined a findByUsername method, which basically finds a single user with the provided username. 
+These type of findX methods are called dynamic finder methods, and will be resolved automatically whenever the naming convention is applied.
+Spring Data JPA offers quite extensive finder method support, which is more than enough for most repositories.
+
+For more information about dynamic finder methods, look at the reference documentation.
+
+So we basically just created a full blown repository bean, having defined only three lines of code. Which is great! 
+But what happens if queries get more complex and the dynamic finder behaviour won’t suffice?
+
+
+******************************************************************************************************************
+
+Named queries
+
+One of the easiest techniques is using JPA named queries. We simply define a @NamedQuery on our entity:
+
+@Entity
+@NamedQuery(
+ name = "User.findByTheUsersName",
+ query = "from User u where u.username = ?"
+)
+public class User { }
+
+And create a corresponding finder method in our repository interface:
+
+public interface UserRepository {
+ User findByTheUsersName(String username);
+}
+
+So whenever the finder method is invoked, Spring Data JPA will automatically perform our named query and return its results.
+@Query
+
+******************************************************************************************************************
+
+Queries in interface
+
+Or we could just directly define a query on our repository interface using annotations:
+
+public interface UserRepository {
+ @Query("select u from User u where u.firstname = ?")
+ List<User> findByFirstname(String firstname);
+}
+
+
+******************************************************************************************************************
+
+Custom implementation
+
+We could even create a custom implementation for some repository method(s). To provide a custom implementation we first define a UserRepositoryCustom interface, with all custom repository methods, and an implementation UserRepositoryImpl. Then we let our UserRepository extend from the custom interface, and Spring Data JPA will automatically wire our custom implementation into the repository bean.
+
+A custom implementation is defined as follows:
+
+public interface UserRepository extends
+ UserRepositoryCustom, CrudRepository<User, Long> {
+ // Generated finder method
+ User findByUsername(String username);
+}
+
+public interface UserRepositoryCustom {
+ // Custom method
+ List<User> findInactiveUsers();
+}
+
+public class UserRepositoryImpl
+ implements UserRepositoryCustom {
+
+ @PersistenceContext
+ private EntityManager em;
+
+ @Override
+ public List<User> findInactiveUsers() {
+  return em.createQuery(
+   "from User where active = false", User.class
+  ).getResultList();
+ }
+}
+
+So we can use Spring Data JPA to create our boilerplate implementations, and yet it is still possible to create custom methods as desired.
+
+
+******************************************************************************************************************
+
+Type safe queries
+
+While the above demonstrated techniques for custom queries are powerful, they have one fatal flaw. Our queries are not type safe! Whenever we start refactoring our domain class, e.g. renaming firstname into name, each query involving that property will break. And we will not know about the error until runtime. By making our queries type safe, we are capable of finding faulty queries at compile time, resulting in fewer bugs later on.
+
+With JPA 2.0 it is possible to define type-safe queries using the CriteriaQuery API . Defining a criteria query goes as follows:
+
+LocalDate today = new LocalDate();
+
+CriteriaBuilder builder = em.getCriteriaBuilder();
+CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
+Root<Customer> root = query.from(Customer.class);
+
+Predicate hasBirthday = builder.equal(root.get(Customer_.birthday), today);
+Predicate isLongTermCustomer = builder.lessThan(root.get(Customer_.createdAt), today.minusYears(2);
+query.where(builder.and(hasBirthday, isLongTermCustomer));
+em.createQuery(query.select(root)).getResultList();
+
+Criteria queries allow you to create type safe queries, but they are extremely verbose.
+Query DSL
+
+Fortunately there is an open-source project QueryDSL that also allows us to specify type-safe queries, but with a much more productive API:
+
+LocalDate today = new LocalDate();
+
+QCustomer customer = QCustomer.customer;
+BooleanExpression hasBirthday = customer.birthday.eq(today);
+BooleanExpression isLongTermCustomer = customer.createdAt.lt(today.minusYears(2));
+new JPAQuery(em)
+ .from(customer)
+ .where(hasBirthday.and(isLongTermCustomer))
+ .list(customer);
+
+When using QueryDSL we require much fewer code, and components. Where JPA required you to have a CriteriaQuery, CriteriaBuilder and Root, we now create our query selection criteria directly from the generated meta model (QCustomer). Also, because the selection criteria (BooleanExpression) is not directly coupled to a query instance, as they are in JPA, we can reuse expressions between different queries.
+
+We could even create a catalog class with all common expressions:
+
+class CustomerExpressions {
+ public static BooleanExpression hasBirthday() {
+  LocalDate today = new LocalDate();
+  return QCustomer.customer.birthday.eq(today);
+ }
+ public static BooleanExpression isLongTermCustomer() {
+  LocalDate today = new LocalDate();
+  return QCustomer.customer.createdAt.lt(today.minusYears(2));
+ }
+}
+
+And use these expressions directly in our repository implementations!
+
+In the case of boolean expressions we could even combine various common expressions to build more complex domain expressions (specification pattern):
+
+hasBirthday().and(isLongTermCustomer())
+
+QueryDSL + Spring Data JPA
+
+Spring provides full QueryDSL integration with the QueryDslPredicateExecutor interface. Whenever your repository interface extends from this executor interface, it will recieve the following powerful query methods:
+
+T findOne(Predicate predicate);
+Iterable<T> findAll(Predicate predicate);
+Iterable<T> findAll(Predicate predicate, OrderSpecifier<?>... orders);
+Page<T> findAll(Predicate predicate, Pageable pageable);
+long count(Predicate predicate);
+
+Allowing us to use our expressions, which extend from Predicate, on the repository:
+
+public void sendGifts() {
+ Predicate shouldRecieveGiftToday = hasBirthday().and(isLongTermCustomer());
+ for(Customer customer: customerRepository.findAll(shouldRecieveGiftToday)) {
+  giftSender.sendGiftTo(customer);
+ }
+}
+
+The above code is readable, and requires no custom repository implementation. However, we made our repository API very wide by allowing any type of customer selection query to be performed. 
+Also QueryDSL has become part of our repository API, meaning it is no longer encapsulated strictly in our repository implementation.
+
+It is often more desirable to provide a strict repository API, that in our case would only offer a findAllLongtermCustomersWithBirthday() method. But then you would be forced to create a custom implementation. Fortunately a support class is provided:
+
+public class CustomerRepositoryImpl
+ extends QueryDslRepositorySupport
+ implements CustomerRepositoryCustom {
+
+ public Iterable<Customer> findAllLongtermCustomersWithBirthday() {
+  QCustomer customer = QCustomer.customer;
+  return from(customer)
+   .where(hasBirthday().and(isLongTermCustomer()))
+   .list(customer);
+ }
+
+}

@@ -1,0 +1,7 @@
+data grid
+
+hotrod = protocol for supporting node joins and recovery from failures
+
+Infinispan data grid platform - page 35 - just intro and some info on cache listeners
+
+

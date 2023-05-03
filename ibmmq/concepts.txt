@@ -1,0 +1,29 @@
+
+Concepts
+*************
+
+WebSphere MQ Message Descriptor (MQMD): 
+	Identifies the message and contains more control information. 
+	Examples of more information are the type of message and the priority that is assigned to the message by the sending application.
+
+Message properties:
+
+	User defined props on message
+
+Message data:
+
+	data
+	
+	
+Queue manager: 
+	Program that is responsible for accepting and delivering messages
+	Multiple queue managers can run on a single physical server or on a wide network of servers across various hardware and operating system platforms.
+	FaultTolerant
+	
+Queues:
+        Maintained by QM
+        
+Channels:
+         QM's are connected by logical channels?????        
+        
+        

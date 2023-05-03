@@ -1,0 +1,36 @@
+********************************************************************
+good reads - java tutorial, TIJ , java concurrency in practice.
+
+Side effects of threads ( read java tutorial)
+
+thread interference - when multiple threads work on a resource(int for eg) the operations on resource may not be atomic, so code has to guarded by making operations synchronized
+
+memory consistency errors - reads of a variable may not be upto date - see http://www.javaperformancetuning.com/news/qotm030.shtml
+
+Atomic Access - atmoicness of reads and writes.
+
+*********************************************************************
+
+A. Basic Threading
+
+extend a thread or implement runnable
+
+calling start method on thread instance will schedule it for running
+
+start and yeild methods will not throw interrupted exception when they are finished
+
+java program will exit only after all threads started by it finish.
+
+setting deamon to true tells thread to exit if program exits.
+
+calling join on a thread object suspends the caller thread from executing next instruction
+
+join requires to catch interrupted exception
+
+isAlive checks if the thread is still running.
+
+for a long running task frequently check for Thread.isInterrupted() ( if task catches interruptedexception it wll not work)
+
+other method is to use volatile variable for communicating between thread worker and thread dispatcher whether program thread should run or shutdown. 
+
+

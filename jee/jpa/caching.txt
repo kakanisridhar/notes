@@ -1,0 +1,34 @@
+@Cache(true/false)
+
+<shared-cache-mode>ENABLE/DISABLE _SELECTIVE</shared-cache-mode>
+
+
+
+Enable_selectvie and Cache(true) will cache the object in secondary cache 
+
+
+
+
+cache read mode - CacheRetrieveMode - USE, BYPASS
+
+cache write mode - CacheStoreMode - USE,BYPASS,REFRESH
+
+
+
+
+they can be set
+
+	entity manager factory
+	
+	entity manager 
+	
+	query - using hints  javax.persistence.cache.storeMode 
+
+
+programatic manupulation
+
+
+getCache() on entity manager to query for cache
+
+and then use it programmatically
+

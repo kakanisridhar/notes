@@ -1,0 +1,146 @@
+1. Modules
+
+declare a module
+
+var myModule = angular.module("myModule",[DEPENDENCIES]);
+
+ng-app = "myModule"
+	
+	a module is defined as an attribute to limit the scope of angular to that element 
+	usually defined on html or body or div tag
+	used for bootstrapping angular application
+	only defined once
+
+
+
+
+2. Controllers
+
+	controllers are associated with view rendering
+	
+	controller is defined in below format
+	
+		myModule.controller(name,[dep1,dep2,function(){}]
+		
+	in short hand form
+	
+		myModule.controller(name,function($scope){}]
+		
+		**$scope is named parameter dep here
+		
+	if controller is independent from a module then using
+		
+		function funcname($scope) {
+		}
+		
+	
+	in html controller is deined as an attribute
+	
+	ng-controller = <<name>> 
+		
+	usually defined on div to limit scope of controller
+	name is javascript function in a js file
+		
+
+
+
+3. Filters
+
+	filters are applied using a pipe |
+
+
+	declare using module.filter(name, config function)
+
+	config function in its simplest case returns a filter function
+
+
+4. Directives
+
+   Directives allow us to extend the grammar of the web through reusable HTML elements, attributes, and classes
+   
+   directives are defined as below
+   
+   
+   myModule.directive("directivename", function(){
+   	return {
+   		//allowed values E - element, A- attribute , C- class ,M-comment
+   		restrict:"E",  
+   		// template for interaction 
+   		template: "<div>Superman in angular directive</div>"
+   	};
+  });
+  
+  
+  directive - params
+  
+  
+  restrict -  on what html elements does directive apply - allowed values E - element, A- attribute , C- class ,M-comment
+  
+  template -  template to inject where the directive is present
+  
+  templateUrl - html to be injected as template
+  
+  link     -  function to execute once where the directive is present
+  
+  require - other directives required
+            accessed in link function using one more param
+            
+  scope - initialize to {} if you want to restrict scope in sub controllers      
+  
+        - {
+            modelname : '@'  //create a string model named modelname	
+        }
+        
+        - {
+	    modelname :'&' //create a function pointer for invoking a function , requires special evaluation expression
+        }
+        
+        - {
+            modelattr : '=' //enables 2 way binding between objects from directive to controller
+        }
+   
+
+	in short
+	
+	"@" operator is used for reading an attribute,
+	"=" is used for creating a bi-directional two way binding, 
+	"&" is used to make a call on something a controller scope. 
+	
+  transclude - true - copy the content inside directive to place wherever ng-transclude is placed
+  
+  replace - wil replace the element
+  
+  compile -
+            should return a link function 
+  
+  
+  
+  
+  built in directives - ng-app, ng-click,ng-model....
+  
+  
+
+4.Expressions
+
+	    starts with - {{ 
+	    ends wtih  -  }}
+
+	    angular evaluates anything within {{}} in the context of declared controller 
+	    
+	    expressions can be varied like arithmatic - data.price * data.rate
+	    
+	    expressions are forgiving  - a.b.c even if it doesnt exist wont result in exception
+	    
+	    filtering expressions  - just like unix filter
+	    			     expression | filter : filterparam1, filterparam2, filterparam3	
+  
+  
+
+5. Scope - $scope
+
+	
+       Acts as intermediate between model, view and controller logic
+       
+
+       $watch
+       $apply

@@ -1,0 +1,35 @@
+
+Start Registry
+
+	windows start rmiregistry port
+
+	unix  rmiregistry port &
+
+
+Bind a Service from local machine(remote binding is not allowed)
+
+
+	LocateRegistry.getRegistry // call createRegistry if you want to starup your own rmi server
+	
+	UnicastRemoteObject.exportObject(some service class, 0); //if your service does not extend UnicastRemoteObject
+	            
+	registry.rebind(service name, stub);
+	
+
+        classpath should contain client jars(if code base from which jars can be downloaded is not set)	
+
+
+Consume a service from remote rmi registry
+	
+	LocateRegistry.getRegistry
+	
+	(YourService) regitry.lookup
+	
+	serv.<<yourmethod>>
+	
+	
+	
+
+
+
+	

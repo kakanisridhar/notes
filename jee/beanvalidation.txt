@@ -1,0 +1,117 @@
+
+1. Basics
+
+important packages
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+
+a. bootstrap in core java
+
+ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+Validator validator = factory.getValidator();
+
+
+b. bootstrap in JEE 
+
+@Resource
+Validator validator;
+
+
+c. usage
+
+
+Set<ConstraintViolation<T>> = validator.validate(T, groups...)
+
+check constraintViolations.iterator().next().getMessage() for validation errors
+
+
+
+2. Validation Groups
+
+   Used for 
+         validating properties partially
+         if multiple and conflicting validators are there(because of valid business case)
+         
+
+   a validation group is an interface which extends Default(validation Group)
+   
+   all validation constraints take group as argument
+   
+   
+   e.g 
+   	
+   	Employee  {
+       	   @NotNull(groups=FullTime.class)
+       	   @Null(groups=PartTime.class)
+           private long salary;
+   	}
+
+
+3. Writing your own constraint
+
+
+implement ConstraintValidator interface
+
+implement an annotation 
+
+
+e.g 
+
+@Constraint(validatedBy={EvenNumberValidator.class})
+@Target({METHOD, FIELD})
+@Retention(RUNTIME)
+public @interface Even {
+    String message() default "Number must be even";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
+    boolean includeZero() default true;
+}
+
+
+public class EvenNumberValidator implements ConstraintValidator<Even,Integer> {
+
+     boolean includesZero;
+         
+     public void initialize(Even constraint) {
+         includesZero = constraint.includeZero();
+     }
+
+     public boolean isValid(Integer value,
+                            ConstraintValidatorContext ctx) {
+         if (value == null)
+             return true;
+         if (value == 0)
+             return includesZero;
+         return value % 2 == 0;
+     }
+}
+
+
+***ConstraintValidatorContext - see implementation libraries for how to use it
+
+
+
+4. Usage in JPA
+
+ PrePersist and PreUpdate lifecycle events will trigger validation on the affected entity, immediately following the event callback, using the Default validation group. 
+ 
+ No group will be validated, by default, during the PreRemove phase. 
+ 
+override this behaviour using properties 
+   
+javax.persistence.validation.group.[pre-persist|pre-update|pre-remove] groups to validate at respective time.
+
+e.g you may create groups called Create, Update, and Remove, and then when you want some kind of validation to occur on one or more of these events,
+you need only set the groups on the relevant constraints to be checked 
+
+
+5. Jee7
+ 
+   Parameters on a method can be validated(thus relieving of input param validation) using ExecutableValidator
+   but this requires AOP/proxy mechanism
+   
+   used extensively in REST architectures

@@ -1,0 +1,113 @@
+conatiner - virtual machine on which iamge runs
+image -  template for building and runnign a cirtual machine
+
+
+layered file system
+-----------------------
+
+	at core is readable os layer
+	on top is RW layer(Volumes) 
+	
+	data volumes are independent of containers
+	
+
+docker run -p hostport:forwardport -v hostlocation:volumename -w WORKING_DIRECTORY IMAGE COMMANDS_TO_RUN
+
+
+docker inspect	
+
+
+docker exec container command
+
+
+Build custom images  
+-------------------
+
+dockerfile
+
+FROM  PARENT_IMAGE:latest
+MAINTAINER skakani@mridasoft.com
+RUN
+COPY
+ENTYRPOINT  ["npm" "start"]  -- this is json array
+WORKDIR
+EXPOSE  PORT
+ENV K1=V1
+ENV K2=V2
+VOLUME
+
+
+bake dockerfile
+
+docker build -t TAG_NAME -f DOCKERFILE
+
+Container Linking
+---------------------------
+
+container 1: 
+docker run -d --name MY_POSTGRES postgres
+
+container 2:
+docker run -d -p 3000 --link MY_POSTGRES:postgres myaspnet
+
+
+inside myaspnet container we use postgres as hostname of machine running postgres
+
+
+netwroking
+----------------------------
+
+isolated networks
+
+docker network ls
+docker inspect 
+
+docker network create --driver bridge NETWORK_NAME
+
+docker run --net=NETWORK_NAME --name SOME_NAME IMAGE
+
+
+e.g 
+
+docker network create --driver bridge appnetwork1
+
+docker run -d --net=appnetwork1 --name app1mongo mongo
+docker run -d --net=appnetwork1 --name nodeapp1 -p 3000:3000 nodeapp1_image
+
+inside nodeapp1 use app1mongo as host name
+
+
+
+compose
+--------------------------------------------
+
+docker-compose.yml
+
+e.g
+
+version: '2'
+services : 
+	image1:
+		build:
+			context: .
+			dockerfile: dockerfilename
+		ports:
+			- "8081:80"
+		networks:
+			- app1-network	
+	mongodb:
+		iamge : mongo
+		networks:
+			- app1-network	
+networks:
+	app1-network
+		driver:bridge
+
+
+docker-compose build
+
+docker-compose up
+
+
+
+

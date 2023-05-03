@@ -1,0 +1,22 @@
+http://java.dzone.com/articles/enterprise-spring-best-0
+
+
+always seperate infrastructure from Problem Domain
+
+
+
+Bean Layers
+
+    Controllers (for MVC, System Domain)
+    Services (Problem Domain)
+    Repository (System Domain)
+
+Other Bean Categories
+
+    Data Transfer Objects (Problem Domain)
+    System Functions (System Domain)
+
+
+
+Spring annotations can be very useful for services, useful annotations are @Service and @Transactional. 
+To abstract away the infrastructure from the business services, create a project specific meta annotation.

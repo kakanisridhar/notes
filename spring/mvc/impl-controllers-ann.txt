@@ -1,0 +1,96 @@
+
+                               
+Controllers - annotations based 
+	
+	@Controller   	- steriotype for identifying mvc controller(component scan has to be enabled) 
+	
+	
+	@RequestMapping 
+			- steriotype for defining urls, htp params on a class, mehtod
+			
+			parameters
+				value = url
+				
+				method = HTTP methods
+				
+				params = supports filtering on parameter values and parameter presence
+				
+				headers = http header
+				
+				consumes = specialization for content-type header
+				
+				produces = specialization for Accept header
+	
+	
+	
+	@ResponseBody
+	
+	
+	
+	
+	
+	
+	
+	method signature 
+	
+		a. Accepts following parameter types
+	
+			*****org.springframework.validation.BindingResult has to follow model
+
+			params supported
+
+			ServletRequest,HttpServletRequest, WebRequest, NativeWebRequest, MultipartRequest, MultipartHttpServletRequest
+			ServletResponse,HttpServletResponse
+
+			HttpSession, SessionStatus
+
+			Locale
+			Principal
+			RedirectAttributes
+			BindingResult
+			Errors
+			UriComponentsBuilder
+
+			map, Model, ModelMap
+			
+		Annotations acceptable on method parameters
+		
+			RequestParam
+			RequestHeader
+			RequestBody
+			RequestPart
+			ModelAttribute
+			PathVariable
+			CookieValue
+		
+		
+		
+		method arguments handling logic can be extended by using 
+		
+		HandlerMethodArgumentResolver 
+		
+		
+		
+		b. method return types
+		
+			ModelAndView
+			Model
+			Map
+			ModelMap
+			String - view name
+			
+			HttpEntity
+			ResponseEntity
+			
+			View
+			
+	
+			Any other object returned will be treated as model with camel case naming convention
+	
+	
+		can be customized by implementing HandlerMethodReturnValueHandler 
+	
+	
+	
+	
+	

@@ -1,0 +1,12 @@
+topics
+partitions
+borkers
+
+*************************************************
+message offset - normally a message identifier
+message retention is per topic
+
+***************
+partitioning  
+
+

@@ -1,0 +1,61 @@
+
+Converter<S,T> :: T convert(S source)
+
+	
+Register in xml
+	
+	ConversionServiceFactoryBean
+	
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+	        <property name="converters">
+	            <list>
+	                <bean class="com.apress.prospring3.ch14.converter.StringToDateTimeConverter"/>
+	            </list>
+	        </property>
+    	</bean>
+	
+	
+        
+ConverterFactory<S, R> :: <T extends R> Converter<S, T> getConverter(Class<T> targetType);
+
+	Used as service provider for supplying converters for an entire class hierarchy with parent type as R 
+	
+
+****************************************************************************************************************
+
+GenericConverter 
+               ::getConvertibleTypes 
+               ::convert
+               
+
+ConditionalGenericConverter
+		::boolean matches(TypeDescriptor sourceType, TypeDescriptor targetType);
+
+
+These classes are holders of non related converters which are to be used by frame work authors to register converters
+for their classes 
+
+
+
+****************************************************************************************************************
+
+ConversionService - Service Provider interface
+
+          ::canconvert
+          ::convert
+          
+ConversionServiceFactoryBean - default implementation of ConversionService which can register converters
+
+FormattingConversionServiceFactoryBean - is prefered way in web environment
+         
+          
+          
+          
+          
+
+                     
+
+
+	
+	
+	

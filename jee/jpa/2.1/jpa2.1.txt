@@ -1,0 +1,152 @@
+
+Interfaces
+
+    AttributeConverter
+    AttributeNode
+    Cache
+    EntityGraph
+    EntityManager
+    EntityManagerFactory
+    EntityTransaction
+    Parameter
+    PersistenceUnitUtil
+    PersistenceUtil
+    Query
+    StoredProcedureQuery
+    Subgraph
+    Tuple
+    TupleElement
+    TypedQuery
+
+Classes
+
+    Persistence
+
+Enums
+
+    AccessType
+    CacheRetrieveMode
+    CacheStoreMode
+    CascadeType
+    ConstraintMode
+    DiscriminatorType
+    EnumType
+    FetchType
+    FlushModeType
+    GenerationType
+    InheritanceType
+    LockModeType
+    ParameterMode
+    PersistenceContextType
+    PessimisticLockScope
+    SharedCacheMode
+    SynchronizationType
+    TemporalType
+    ValidationMode
+
+Exceptions
+
+    EntityExistsException
+    EntityNotFoundException
+    LockTimeoutException
+    NonUniqueResultException
+    NoResultException
+    OptimisticLockException
+    PersistenceException
+    PessimisticLockException
+    QueryTimeoutException
+    RollbackException
+    TransactionRequiredException
+
+Annotation Types
+
+    Access
+    AssociationOverride
+    AssociationOverrides
+    AttributeOverride
+    AttributeOverrides
+    Basic
+    Cacheable
+    CollectionTable
+    Column
+    ColumnResult
+    ConstructorResult
+    Convert
+    Converter
+    Converts
+    DiscriminatorColumn
+    DiscriminatorValue
+    ElementCollection
+    Embeddable
+    Embedded
+    EmbeddedId
+    Entity
+    EntityListeners
+    EntityResult
+    Enumerated
+    ExcludeDefaultListeners
+    ExcludeSuperclassListeners
+    FieldResult
+    ForeignKey
+    GeneratedValue
+    Id
+    IdClass
+    Index
+    Inheritance
+    JoinColumn
+    JoinColumns
+    JoinTable
+    Lob
+    ManyToMany
+    ManyToOne
+    MapKey
+    MapKeyClass
+    MapKeyColumn
+    MapKeyEnumerated
+    MapKeyJoinColumn
+    MapKeyJoinColumns
+    MapKeyTemporal
+    MappedSuperclass
+    MapsId
+    NamedAttributeNode
+    NamedEntityGraph
+    NamedEntityGraphs
+    NamedNativeQueries
+    NamedNativeQuery
+    NamedQueries
+    NamedQuery
+    NamedStoredProcedureQueries
+    NamedStoredProcedureQuery
+    NamedSubgraph
+    OneToMany
+    OneToOne
+    OrderBy
+    OrderColumn
+    PersistenceContext
+    PersistenceContexts
+    PersistenceProperty
+    PersistenceUnit
+    PersistenceUnits
+    PostLoad
+    PostPersist
+    PostRemove
+    PostUpdate
+    PrePersist
+    PreRemove
+    PreUpdate
+    PrimaryKeyJoinColumn
+    PrimaryKeyJoinColumns
+    QueryHint
+    SecondaryTable
+    SecondaryTables
+    SequenceGenerator
+    SqlResultSetMapping
+    SqlResultSetMappings
+    StoredProcedureParameter
+    Table
+    TableGenerator
+    Temporal
+    Transient
+    UniqueConstraint
+    Version
+

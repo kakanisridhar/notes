@@ -1,0 +1,52 @@
+
+How wil java serialize an object?
+What is the payload of such serialization?
+Is it efficient? 
+Are there any alternatives to java serialization? 
+
+
+payload - is high as it should take care of versioning, all meta data is serialized resulting in higher payload.
+compute power - not yet analyzed
+
+**************************************************************************************************************************************
+
+Serializable  - marker interface for serializing object
+
+transient   - for suppressing default serialization
+
+
+customizing serialization - method 1 - using methods writeObject/readObject
+
+ write your own
+
+ private void writeObject(java.io.ObjectOutputStream out) throws IOException
+ private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException;
+ 
+ and if required
+ 
+ private void readObjectNoData() throws ObjectStreamException;
+
+ *** you just need to worry about your own class, all parent and child behaviour will be taken care by jvm
+
+
+
+
+customizing serialization - method 2 - Externalizable
+ 
+An Externalizable instance can designate a substitution object via the writeReplace and readResolve methods documented in the Serializable interface.
+
+When an Externalizable object is reconstructed, an instance is created using the public no-arg constructor, then the readExternal method called.
+
+Serializable objects are restored by reading them from an ObjectInputStream.
+
+
+
+     
+     
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+
+Bootstrapping
+
+
+angularjs automatic bootstrapping process
+
+0. The browser loads the HTML and parses it into a DOM
+   The browser loads angular.js script
+
+
+1. Angular waits for DOMContentLoaded event Angular looks for ng-app directive, which designates the application boundary
+
+   ng-app
+        html data atttribute
+        e.g ng-app="optionalModuleName" 
+        
+
+2. angular loads the module named
+   The Module specified in ng-app (if any) is used to configure the $injector 
+
+3. The $injector is used to create the $compile service as well as $rootScope
+
+4. The $compile service is used to compile the DOM and link it with $rootScope
+   
+   treating element where ng-app is present as root of compilation($rootScope)
+   
+   this will make angular restricted to particular scope

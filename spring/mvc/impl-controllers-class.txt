@@ -1,0 +1,20 @@
+Controllers - interface based 
+
+	I- org.springframework.web.servlet.mvc.Controller
+	
+	ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception;
+                               
+
+	Spring controller implementations
+	
+
+		UrlFilenameViewController - A controller implementation that takes the path of a URL and transforms that into a view name. It can be configured to append a prefix andor suffix to the view name.
+	
+		ParameterizableViewController - A controller that returns a configured view name.
+	
+		mvcview-controller in xml file is a proxy for this object
+	
+	
+	
+	Remaining controllers are considred to be deprecated - use annotations instead
+                               

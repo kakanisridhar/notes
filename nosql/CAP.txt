@@ -1,0 +1,11 @@
+Consistency
+
+	All database clients will read the same value for the same query, even given concurrent
+updates.
+
+Availability
+	All database clients will always be able to read and write data.
+
+Partition Tolerance
+	The database can be split into multiple machines; it can continue functioning in
+the face of network segmentation breaks.

@@ -1,0 +1,23 @@
+Using PropertyEditors(java beans concept) - old way
+
+
+Extend PropertyEditorSupport and implement setAsText, getAsText.
+	
+
+register in xml - CustomEditorConfigurer
+         
+         <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+	         <property name="customEditors">
+	             <map>
+	                 <entry key="org.joda.time.DateTime">
+	                     <ref local="dateTimeEditor" />
+	                 </entry>
+			 <entry key="com.apress.prospring3.ch5.pe.Name">
+			     <bean class="com.apress.prospring3.ch5.pe.NamePropertyEditor"/>
+                	</entry>	                 
+	             </map>
+	             	
+	         </property>
+    	</bean>
+       
+         

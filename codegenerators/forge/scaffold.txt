@@ -1,0 +1,21 @@
+I -  ScaffoldProvider
+
+name
+description
+isSetup
+
+NavigationResult getSetupFlow 
+      - UI wizard which will be used when setting up a scaffold provider 
+      
+NavigationResult getGenerationFlow 
+      - UI wizard - while scaffolding - usually  - ScaffoldableEntitySelectionWizard 
+      
+List<Resource> setup 
+      - return a list of static resources - called once on project setup
+      - implement isSetup correctly if you implement this
+      
+List<Resource> generateFrom
+      - main method to be implemented
+      - return generated resources
+      - call generationContext.getResources() to retrieve the list of java classes to work on
+      - filter for java resources and work on one by one

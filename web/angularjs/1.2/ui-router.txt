@@ -1,0 +1,54 @@
+
+Intro 
+
+	AngularUI Router is a routing framework which allows you to organize the parts of your interface into a state machine
+
+	UI-Router is organized around states, which may optionally have routes, as well as other behavior, attached.
+
+	States are bound to named, nested and parallel views, allowing you to powerfully manage your application's interface.
+
+
+
+Including in your app
+
+	1. 
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    		<script src="js/angular-ui-router.min.js"></script>
+    	
+		<script>
+			var myApp = angular.module('myApp', ['ui.router']);
+			// For Component users, it should look like this:
+			// var myApp = angular.module('myApp', [require('angular-ui-router')]);
+		</script>
+    	
+    	2.
+	    	declare placeholder for your view
+    	
+    		<div ui-view></div>
+
+	3.
+		a. 
+			declare a link for transition between states
+	
+			<a ui-sref="state1">State 1</a>
+	
+		b. 
+	
+			by calling $state.go() or $state.transitionTo()
+			usually from withing a controller function and using attribute ng-click="setPage(page)"
+	
+
+		c. 
+			or by using url transition
+	
+			<a ng-href="#/ng-href="#/colors/{{color}}">{{color}} color</a>
+	
+	
+	4.	
+		and finally config for ui-router
+	
+	
+
+
+	
+

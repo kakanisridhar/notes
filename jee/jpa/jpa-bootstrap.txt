@@ -1,0 +1,47 @@
+
+1. Managing Entities
+
+
+ Persistence unit - template for configuring EntityManagerFactory
+ 
+ EntityManagerFactory - The configuration for an entity manager is templated from the EntityManagerFactory that created it, but it is defined separately as a persistence unit.
+ 
+ One to one correspondence between Persistence unit <-->  EntityManagerFactory
+ 
+ 
+
+ EntityManager - I - manages entities
+ 
+ 
+ Persistence context - 
+ 
+ When an entity manager obtains a reference to an entity, either by having it explicitly passed in as an argument to a method call or because it was read from the database, 
+ that object is said to be managed by the entity manager. The set of managed entity instances within an entity manager at any given time is called its persistence context. 
+ Only one Java instance with the same persistent identity may exist in a persistence context at any time.
+
+
+						   Peristence
+							|
+							|
+				  <--configured by--	|
+		Persistence unit  -----1-1-------  EntityManagerFactory
+			|				|
+			1				1
+			|				|
+			*				*
+			|				|
+		Persistence context -----*----1--- EntityManager	
+
+
+
+ 
+ Many entity managers can point to the same persistence context. 
+ 
+ Programs work with entity managers. Persistence Context is for transaction purpose. **http://tomee.apache.org/jpa-concepts.html - actually Persistence Context is an L1 cache
+
+
+ lifecycle of persistence context is bound to the transaction Object Ref Equality is only guaranteed in the case of same EM-Transaction combination
+ 
+ 
+ EntityManager  - is not thread safe and should not be used from multiple threads so better way is to use EJB/singletons to hold reference to  EntityManager
+

@@ -1,0 +1,54 @@
+root of rich data related exceptions
+	DataAccessException
+
+
+@Repository  inject it with @Resource or @PersistenceContext
+
+
+Strategy(design pattern) based approach
+
+
+JdbcTemplate 
+	- datasource
+	-errortranslation
+	
+	
+	queryForObject(query, params, rowmappers)
+	update(PreparedStatementCreator,KeyHolder)
+	execute()
+	batchUpdate(sql, BatchPreparedStatementSetter)
+
+Rowmapper
+	:maprow(resultset,rownum)
+	
+
+ResultsetExtractor
+	:extractdata(rs)
+
+
+
+MappingSqlQuery
+SqlUpdate
+BatchSqlUpdate
+SqlFunction
+
+
+
+
+SqlParameterSource - mapparamsource
+
+PreparedStatementCreator -  
+KeyHolder
+
+
+SQLErrorCodeSQLExceptionTranslator
+
+
+
+SimpleJdbcInsert
+SimpleJdbcCall
+
+
+
+
+	

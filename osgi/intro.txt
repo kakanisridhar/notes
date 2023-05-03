@@ -1,0 +1,18 @@
+A bundle encapsulates a collection of Java classes that are highly cohesive
+
+
+Bundle-SymbolicName: helloworld
+Bundle-ManifestVersion: 2
+
+Export-Package: some java package
+
+Import-Package: some package in other bundle
+
+
+entry point of osgi app  - BundleActivator
+
+must be specified on manifest file as 
+
+Bundle-Activator: Full class name
+
+

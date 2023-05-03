@@ -1,0 +1,58 @@
+Liquibase is a tool for maintaining db changes in applications which work on many tables
+
+Changes can be applied to db in any of the following ways  - ant/maven/spring/ejb/cdi/commandline
+
+Sql file can be generated instead of applying changes using - sql output mode
+
+
+1. Generate changelog from existing DB
+
+   a. install liquibase
+   b. copy the drivers required to liquibase folder
+   
+   in app environments this should be done by using liquibase jar rather than installing it on machine
+   
+   execute 
+   
+
+  liquibase --driver=oracle.jdbc.OracleDriver \ --classpath=\path\to\classes:jdbcdriver.jar \ 
+  --changeLogFile=db.changelog.xml \ --url="jdbc:oracle:thin:@localhost:1521:XE" \ 
+  --username=scott \ --password=tiger \ generateChangeLog 
+  
+  
+2. Applying changelog in spring applications
+
+
+  declare a bean
+   
+  <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+      	<property name="dataSource" ref="dataSource" />
+      	<property name="changeLog" value="classpath:/db/db.changelog.xml" />
+  </bean>
+
+  
+
+3. Use in unit testing
+
+
+4. Use in integration testing
+
+
+5. Best practices
+
+
+6. Limitations
+
+   when I deploy spring app using jee data source in Jboss i got an error.
+   
+   investigating further - it is because of jboss weld subsysmtem trying of find beans
+   
+   Fix for this is to ask liquibase team to generate custom jars for spring and CDI.
+   
+
+   
+
+
+
+
+

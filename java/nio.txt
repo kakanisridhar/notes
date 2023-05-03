@@ -1,0 +1,50 @@
+
+****Low level****
+
+imagine a coal mine - all you can see is a container of coal(buffer) transported using a track(channel)
+
+
+Buffer -  interface for buffer operations - invariants - 0 <= mark <= position <= limit <= capacity 
+	  hasRemaining -  can be used to check for availability of data
+
+	  Various buffers for handling data	  
+	  
+Channel	- interface(isopen and close) for getting data
+
+Charset - encode, decode
+
+
+
+*******High level****
+
+
+Path - represent just a path, nothing more ie. not necessary for the path to exist on system
+	
+	getFileName
+	getNameCount
+	getName
+	getParent
+	getRoot 
+	
+	normalize - resolves .. , .   - working only with /, \\.. is not working
+	
+	toRealPath - resolves symlinks and converts a path to real path 
+	
+	
+Paths - helper class
+
+
+
+Files - contains static helper methods for reading/writing files
+
+FileSystems -
+
+FileSystem -
+
+Walking a directory tree - 
+
+Waching/Events a file - 
+
+
+
+

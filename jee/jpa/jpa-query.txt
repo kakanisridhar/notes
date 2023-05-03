@@ -1,0 +1,43 @@
+SQL like syntax
+
+Select instance from ClassName instance
+
+
+
+
+ResultSet Mapping
+
+
+in case of normal queries it should be BAU
+
+
+if result sets are to be mapped to types use 
+
+"SELECT NEW <<full class name>>( e.name, e.department.name)" +
+                       "FROM Project p JOIN p.employees e " +
+                       "WHERE p.name = ?1 "  +
+                       "ORDER BY e.name" 
+
+
+
+supports query hints for paging, batch sizes
+
+
+best place to define hints is using mapping file
+
+
+
+
+
+FETCH JOIN
+
+	A FETCH JOIN is a join operation that returns associated entities as a side effect of running the query.
+	
+	
+AS - keyword used to name an entity
+
+IS EMPTY
+
+NULL
+
+

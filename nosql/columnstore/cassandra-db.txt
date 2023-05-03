@@ -1,0 +1,7 @@
+
+cassandra storage - Log-Structured Merge Tree
+
+stores each table in a directoy
+
+keyspace
+table

@@ -1,0 +1,103 @@
+any jar with beans.xml qualifies for CDI
+
+
+1. Context and Dependency Injection
+
+DI  - injecting of depenecies into target bean
+
+Context - scope of the target bean and how dependent beans are instantiated
+
+
+
+2. javax.inject pakace  - for java SE
+
+
+
+@Inject  - annotation - placeholder for injecting a target bean
+
+@Qualifier - annotaion used to mark other annotations which can be used for differentiating types of injected instances
+
+@Named - String based qualifier - used to name a bean
+
+@Scope -  A scope annotation applies to a class containing an injectable constructor and governs how the injector reuses instances of the type. 
+          Also used to declare custom scope annotations. e.g @singleton is declared with scope
+
+@Singleton - 
+
+
+Bootstrapping in J2SE - down load - weld-2.1.0.Final and see examples there
+
+
+
+3. DI - javax.enterprise.inject
+
+
+    I - Instance
+    
+    A-
+        Alternative     	-   for marking a bean as alternative implementation 
+        Any             	-   for collecting all instances of beans of a particular type
+        Default         	-   for declaring a bean as default implementation
+        Stereotype		-   Marker annotation for avoiding annotation hell
+        Typed			-   for exposing bean as instance of some interface(if you implement mutliple interfaces)
+        Decorated       	-
+        Disposes		-
+        Intercepted		-
+        Model			-
+        New			-   always crete a new instance of bean
+        Produces		-   way of producing beans at runtime based on arguments
+        			    way of injecting custom objects into  injectionpoint	
+        Specializes		- 
+        TransientReference 	- 
+        Vetoed			-
+
+
+4. Context - javax.enterprise.context
+	
+
+    ApplicationScoped
+    ConversationScoped
+    Dependent
+    Destroyed
+    Initialized
+    NormalScope
+    RequestScoped
+    SessionScoped
+
+
+   Container liberally creates instances of proxies. 
+   so constructor of the boject is called multiple times but proxy objects are created as requested in scope.
+
+
+
+Collecting all implementations of an interface
+	
+	 @Inject, @Any, and javax.enterprise.inject.Instance<InterfaceName> ( the components must have Steriotype or a qualifier )
+		
+	 **good that you dont need to implement a factory
+	 
+	 
+
+ComponentScanning  - SPI
+
+
+	Create a new file META-INF\services\javax.enterprise.inject.spi.Extension
+	
+	implement Extension interface
+		beforebeandiscovery  - before the container starts
+		afterbeandiscovery   - after the container starts
+		processAnnotatedType - called for each java object detected - so use it sparingly
+	 
+	 
+	 
+
+	 
+
+
+	 
+			
+
+	
+	
+
+	

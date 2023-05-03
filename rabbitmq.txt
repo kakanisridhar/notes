@@ -1,0 +1,84 @@
+Message broker
+
+	Messages are published to exchange along with routing key
+	Exchange will determine (based on type of exchange + routing key) what queues to publish the message on
+	
+	Fanout exchange - broadcast to all queues
+	Topic exchange - based on binding key pattern and routing key the queues will recives messages
+	Header Exchange
+	Default Exchange
+	
+	Queues - transient , durable
+	
+	
+	
+
+
+
+spring rabbit mq
+=======================
+@Configuration
+public class RabbitMQConfig {
+
+    @Value("amq.direct")
+    String exchange;
+
+    @Value("queue-name") // Don't want to do this
+    String queueName;
+
+    @Value("routing-key") // Or this
+    String routingkey;
+
+    @Bean
+    Queue queue() {
+        return new Queue(queueName, true);
+    }
+
+    @Bean
+    DirectExchange exchange() {
+        return new DirectExchange(exchange);
+    }
+
+    @Bean
+    Binding binding(Queue queue, DirectExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(routingkey);
+    }
+
+    @Bean
+    public MessageConverter jsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
+    public AmqpTemplate template(ConnectionFactory connectionFactory) {
+        final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(jsonMessageConverter());
+        return rabbitTemplate;
+    }
+}
+
+@Service
+public class RabbitMQSender {
+
+    @Autowired
+    private AmqpTemplate template;
+
+    @Value("amq.direct")
+    private String exchange;
+
+    public void send(MessageDTO message) {
+        template.convertAndSend(exchange, message);
+
+    }
+}
+
+
+=============
+https://stackoverflow.com/questions/57870894/how-to-create-dynamic-queues-in-rabbit-mq-using-spring-boot
+creating quesues dynamically
+
+
+@Bean
+public AmqpAdmin amqpAdmin() {
+    return new RabbitAdmin(connectionFactory);
+}

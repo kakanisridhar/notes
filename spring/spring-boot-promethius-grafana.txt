@@ -1,0 +1,4 @@
+promethius is timeseries databases, it scrapes data at regular intervals from applications configured using urls and shows them
+grafana is a dashboard for importing promethius data and showing it in dashboard
+
+actuator/prometheus - is the url where metrics are exported

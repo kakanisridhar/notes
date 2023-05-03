@@ -1,0 +1,13 @@
+Plugins are the smallest deployable and installable software components of Eclipse.
+
+in osgi terms bundle == plugin
+
+Each plugin can define extension-points which define possibilities for functionality contributions ( code and non-code ) 
+by other plugins. Non-code functionality contributions are for example the provision of help content.
+
+
+A feature project is basically a list of plugins and other features which can be understood as a logical separate unit.
+
+Finally, a product is a stand-alone program built with the Eclipse platform. 
+A product may optionally be packaged and delivered as one or more features, 
+which are simply groupings of plug-ins that are managed as a single entity by the Eclipse update mechanisms.

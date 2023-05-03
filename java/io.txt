@@ -1,0 +1,36 @@
+
+IO
+
+File - java.io.File - path is more appropriate name for this (TIJ)
+
+Reading - Binary - InputStream
+
+Writing - Binary - OutputStream
+
+Readin-Writing - RandomAccessFile
+
+IO uses decorator pattern.
+
+FilterInputStream and FilterOutputStream are the base classes for decorating streams
+
+
+
+As binary ignores character encoding better to use character streams
+
+
+Reading - Character - Reader
+
+Writing - Character - Writer
+
+reading writing data
+
+DataOutput
+DataInput
+
+
+
+
+ 
+
+             
+

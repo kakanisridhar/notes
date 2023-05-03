@@ -1,0 +1,44 @@
+Actuator can be used for production ready features like observability , metrics..
+
+spring-boot-starter-actuator
+
+
+important endpoints
+
+auditevents
+beans
+caches
+configprops
+env
+health
+metrics
+prometheus
+
+
+exposing endpoints
+--------------
+management.server.port = port where endpoints are accessible
+
+
+management.endpoints.jmx.exposure.exclude
+management.endpoints.jmx.exposure.include
+
+management.endpoints.web.exposure.include
+management.endpoints.web.exposure.exclude
+
+
+in kubernetes
+
+livenessProbe:
+  httpGet:
+    path: "/actuator/health/liveness"
+    port: <actuator-port>
+  failureThreshold: ...
+  periodSeconds: ...
+
+readinessProbe:
+  httpGet:
+    path: "/actuator/health/readiness"
+    port: <actuator-port>
+  failureThreshold: ...
+  periodSeconds: ...

@@ -1,0 +1,6 @@
+Core Concepts: Subject, SecurityManager, and Realms
+
+
+Subject  - current executing user
+
+	   Subject currentUser = SecurityUtils.getSubject();

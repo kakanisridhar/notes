@@ -1,0 +1,23 @@
+Architecture
+
+
+Gossip - peer to peer communication protocol
+	
+	 list of nodes(seed nodes) have to be configured in a cluster based on geographical distribution of network
+	 inorder to prevent partitions in network
+
+Partitioner - distribute data across nodes in cluster
+
+Replica placement strategy - store copies of data for fault tolerance
+
+Snitch - responsible for knowing the location of nodes within your network topology and distributing replicas 
+         by grouping machines into data centers and racks
+
+
+Cassandra node acts as front
+
+
+
+
+
+

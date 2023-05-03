@@ -1,0 +1,11 @@
+
+
+ SecondaryTables used for mapping entities to different tables,
+ 
+ Joined inheritance using different tables and one to one mapping
+ 
+
+
+@Inheritance(inheritancetype)
+
+JOINED  - using @PrimaryKeyJoinColumn and @DiscrminatoryColumn

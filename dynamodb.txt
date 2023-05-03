@@ -1,0 +1,10 @@
+partition key
+sort key or range key
+
+both combined - primary key
+
+secondary index
+ - mostly sort key become partition key for 
+ and partitionkey becomes sort key
+
+sparse index

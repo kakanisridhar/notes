@@ -1,0 +1,86 @@
+Auto configures based on available jars at runtime, based on config
+starter jars contain the logic of autoconfiguration
+
+@SpringBootApplication
+
+@Configuration
+
+@RestController
+
+@GetMapping
+
+@PostMapping
+
+@PutMapping
+
+@DeleteMapping
+
+@PathVariable 
+@RequestHeader(headername) String language
+or
+@RequestHeader Map<String, String> headers
+or
+@RequestHeader HttpHeaders headers
+
+
+@RequestBody
+
+
+
+Exception handling
+----------------------
+
+
+@ControllerAdvice
+
+  @ResponseBody
+  @ExceptionHandler(EmployeeNotFoundException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  String employeeNotFoundHandler(EmployeeNotFoundException ex) {
+    return ex.getMessage();
+  }
+
+
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+@ExceptionHandler(MethodArgumentNotValidException.class)
+public Map<String, String> handleValidationExceptions(
+  MethodArgumentNotValidException ex) {
+    Map<String, String> errors = new HashMap<>();
+    ex.getBindingResult().getAllErrors().forEach((error) -> {
+        String fieldName = ((FieldError) error).getField();
+        String errorMessage = error.getDefaultMessage();
+        errors.put(fieldName, errorMessage);
+    });
+    return errors;
+}
+
+
+
+Testing
+---------------
+
+@RunWith(SpringRunner.class) 
+@WebMvcTest
+@AutoConfigureMockMvc
+public class ControllerIntegrationTest {
+
+    @MockBean
+    private UserRepository userRepository;
+    
+    @Autowired
+    UserController userController;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    //...
+    
+}
+
+
+
+Configuration
+------------------------------
+
+@Configuration
+@ConfigurationProperties(prefix = "mail")

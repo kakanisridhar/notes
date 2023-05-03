@@ -1,0 +1,56 @@
+1. Using error-page tag in web.xml file:
+
+This is a servlet specs driven approach, where the exceptions that bubble up from the application are intercepted based on either the HTTP response code or the exception type and the handler for the exception is specified using the location sub-tag this way:
+ 
+ 
+	<error-page>
+	    <error-code>500</error-code>
+	    <location>/500</location>
+	</error-page>
+	<error-page>
+	    <exception-type>java.lang.Exception</exception-type>
+	    <location>/uncaughtException</location>
+	</error-page>
+
+If it is a Spring MVC based app, and if the intent is for a Spring MVC view to present the message, then a location should ideally be a Spring controller which can show the content and this can be done for the 2 locations above purely using Spring MVC configuration:
+	<mvc:view-controller path="/500" view-name="500view"/>
+	<mvc:view-controller path="/uncaughtException" view-name="uncaughtexception"/>
+
+2. Registering a HandlerExceptionResolver:
+
+	HandlerExceptionResolver(s) are responsible for mapping the exception to views, 
+	the simplest approach is to register a SimpleMappingExceptionResolver that can map exception types to view names. 
+	The following is a way to register SimpleMappingExceptionResolver using Spring xml bean definition
+	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" p:defaultErrorView="uncaughtException">
+	 <property name="exceptionMappings">
+	  <props>
+	   <prop key=".DataAccessException">dataAccessFailure</prop>
+	   <prop key=".NoSuchRequestHandlingMethodException">resourceNotFound</prop>
+	   <prop key=".TypeMismatchException">resourceNotFound</prop>
+	   <prop key=".MissingServletRequestParameterException">resourceNotFound</prop>
+	  </props>
+	 </property>
+	</bean>
+
+3. Using @ExceptionHandler
+
+
+In the first variation, @ExceptionHandler can be applied to the level of a controller class in which case the exceptions raised by the same controller @RequestMapped methods are handled by the @ExceptionHandler annotated methods.
+	@Controller
+	public class AController {
+	    @ExceptionHandler(IOException.class)
+	    public String handleIOException(IOException ex) {
+	      return "errorView";
+	    }
+	}
+
+In the second variation of @ExceptionHandler, the annotation can be applied to ALL controller classes by annotating a method of @ControllerAdvice annotated class:
+	@ControllerAdvice
+	public class AControllerAdvice {
+	    @ExceptionHandler(IOException.class)
+	    public String handleIOException(IOException ex) {
+	      return "errorView";
+	    }
+	}
+

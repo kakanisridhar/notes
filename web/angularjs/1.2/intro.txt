@@ -1,0 +1,41 @@
+AngularJs - 		is a model view controller javascript framework
+
+Model			Data that is shown to the user and with which the user interacts, this is just a normal javascript object
+
+View 			What the user sees (the DOM) , composed from initial html and partial htmls loaded subsequently
+
+Templates 		HTML with angular directives, expressions, filters
+
+Expressions 		Access variables and functions from the scope
+
+Directives 		Extend HTML with custom attributes and elements
+
+Data Binding 		Two way data sync between the model and the view
+
+			Templating system works on DOM objects not on strings. 
+			The template is still written in an HTML string, but it is HTML (not HTML with template sprinkled in.) 
+			The browser parses the HTML into the DOM, and the DOM becomes the input to the template engine known as the compiler. 
+			The compiler looks for directives which in turn set up watches on the model. 
+		        The result is a continuously updating view which does not need template model re-merging. 
+		        Your model becomes the single source-of-truth for your view.
+
+
+Scope 			Context where the model is stored so that controllers, directives and expressions can access it
+
+Controller 		Business logic which is uded for interaction between view, model and scope
+
+
+Module 			Configures the Injector
+
+Compiler 		Parses the template and instantiates directives and expressions
+
+Dependency Injection 	Creates and wires objects / functions
+
+Injector 		Dependency injection container
+
+
+Factory			reusable business logic independent of views, TODO - learn when are different factories requied
+Service			---singleton 
+providers		
+
+

@@ -1,0 +1,8 @@
+usages
+bulk print of correspondence letters
+month end reporting jobs ...
+
+
+jdbccursoritem reader
+
+composite writer

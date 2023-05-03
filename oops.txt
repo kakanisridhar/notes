@@ -1,0 +1,7 @@
+Abstraction -  extract essential properties while omiting inessential details - for e.g providing interface and abstract classes
+Encapsulation - packing of data and functions that operate on data , hiding away working details
+Inheritance -  It is a mechanism where you can to derive a class from another class for a hierarchy of classes that share a set of attributes and methods.
+polymorphism - many forms - ability of on object to take many forms or ability of methods to take many defintions
+
+
+Clss - a template for creating objects

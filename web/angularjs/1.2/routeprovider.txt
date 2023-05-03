@@ -1,0 +1,49 @@
+1.  routeProvider is configured using config function of angular module
+
+e.g 
+
+	app.config(function($routeProvider) {
+	
+		$routeProvider.when....otherwise
+	
+	})
+	
+	
+	
+	routeProvider uses 
+
+	when
+	...
+	otherwise  loop structure
+	
+
+	each when takse string like /url/:param1/:param2?searchParam=searchValue
+	and a config object with properties
+	
+	
+	template     - string template	
+	templateUrl  - templateurl
+	controller   - name of controller  
+	redirectTo   - accepts string or a function 
+	               function params - routParams, search, path
+	               
+	resolve      - resolve function	               
+	
+
+a . route params
+
+    in the when input string what ever is :prefixed is routeparam
+    
+    inside a controller you access params by declaring a dependency on $routeParams
+    and accessing the parameter using
+    
+    $routeParams.param1
+    
+
+c. search params
+   
+   in the when input string what ever is used as query string is serach
+   
+d. 
+
+	 

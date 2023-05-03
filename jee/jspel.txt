@@ -1,0 +1,20 @@
+JSP EL Implicit Objects:
+
+The JSP expression language supports the following implicit objects:
+
+pageScope		Scoped variables from page scope
+requestScope		Scoped variables from request scope
+sessionScope		Scoped variables from session scope
+applicationScope	Scoped variables from application scope
+param			Request parameters as strings
+paramValues		Request parameters as collections of strings
+header			HTTP request headers as strings
+headerValues		HTTP request headers as collections of strings
+initParam		Context-initialization parameters
+cookie			Cookie values
+pageContext		The JSP PageContext object for the current page
+
+
+
+${} - immediately evalued expression
+#{} - deffered evaluation used in JSF

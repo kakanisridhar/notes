@@ -1,0 +1,70 @@
+kubernetes - container orchestration platform - automates deployment , scaling and management of containarized applications
+
+Admin ui + control plane
+
+etcd - to store cluster state
+controller manager - 
+scheduler - 
+
+kube proxy - networking proxy , responsible for routing and load balancing
+ 
+
+Nodes:
+These machines perform the requested tasks assigned by the control plane.
+
+Pod:
+A set of 1 or more containers deployed to a single node. A pod is the smallest and simplest Kubernetes object.
+
+
+deployment:
+
+
+replica set:
+A ReplicaSet's purpose is to maintain a stable set of replica Pods running at any given time.
+
+
+HorizontalPodAutoscaler:
+
+
+
+Service:
+A way to expose an application running on a set of pods as a network service. This decouples work definitions from the pods.
+
+
+persistent volume - file system mounted to cluster
+
+
+pod - a unit of replication
+
+deployment - abstraction used for deploying pods
+
+
+
+
+deploying
+----------------------
+
+persistent volume claim
+
+config map
+
+
+
+networking
+-----------------------
+
+pods are ephemeral , as pods come and go we need a service to access the pod
+
+cluster ip - Default type of service , port and targetport , replicas , selectors play the role of connecting service to pods
+
+
+NodePort - when you want to directly expose a node port to external world , not secure as clients can talk to node
+
+Headeless service  - when you want to directly communicate with pod
+
+load balancer - 
+
+ingres
+
+
+

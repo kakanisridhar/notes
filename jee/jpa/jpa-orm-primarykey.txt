@@ -1,0 +1,29 @@
+
+@Id - Idenitifer - on property or getter of class
+
+@IdClass  - composite primary key - each attribute should be marked id 
+
+
+@GeneratedValue - for generated business ids,  
+	strategy  - strategy : GenerationType - AUTO | IDENTITY | SEQUENCE | TABLE
+	generator - string 
+
+@SequenceGenerator - 
+
+@TableGenerator - 
+
+
+for portability use table, for performance use sequence generator(Sql server 2012,oracle,postgress supports sequences, MYSQL doesnt)
+
+
+
+in hibernate for shared primary keys use 
+
+	@GeneratedValue(generator="foreign") 
+	@GenericGenerator(name="foreign", strategy = "foreign", 
+			  parameters = {@Parameter(name="property", value="user")})
+
+
+in JPA 2.1 
+          
+         @MapsId 

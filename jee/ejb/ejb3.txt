@@ -1,0 +1,110 @@
+1. Description
+
+EJB - an enterprise bean is a server-side component that encapsulates the business logic of an application.
+EJB container provides  - transaction management and security authorization.
+
+
+Session beans -  flavours stateful, stateless, and singleton
+MessageDrivenBeans - just processing messages - onmessage method - QOS is different
+
+stateless - methods which perform generic tasks
+statefull - when retaining state between method call from clients
+singleton - A single enterprise bean needs to be accessed by multiple threads concurrently
+
+
+
+2. Declaring EJB
+
+ @Session 
+   public class ClassName
+   
+a. Local using annotations
+   
+   @Local
+   public interface InterfaceName
+   
+   @Local(InterfaceName.class)
+   public class BeanName implements InterfaceName
+
+
+b. Remote using annotations
+
+   @Remote
+   public interface InterfaceName
+   
+   @Stateful
+   @Remote(InterfaceName.class)
+   public class BeanName implements InterfaceName
+
+
+
+3. Using EJB
+
+a. using annotation -  @EJB Example example;
+
+b. using lookup - InitialContext.lookup("java:module/ExampleLocal");
+
+
+
+4. Packaging
+
+	META-INF\ejb-jar.xml - contains bean declarations if not using annotations, security, transaction demarcation etc
+	
+	
+	
+
+5. Lifecycle Stateless/Statefull Session beans
+
+
+a. Create
+b. Dependency injection, if any
+c. @PostConstruct callback, if any
+d. Init method, or ejbCreate<METHOD>, if any
+
+                           @PrePassivate
+   doesnotexist -----ready --------------passive
+                           @PostActivate
+   
+   
+e. @Remove
+f. @PreDestroy
+
+
+6. Lifecycle Singleton
+
+  no passivation here
+  
+  a. @Startup method
+  
+ 
+ 
+ 7. Interceptors
+ 
+    AroundInvoke
+    
+    InvocationContext
+    
+    package javax.ejb;
+    public interface InvocationContext {
+       public Object getBean();
+       public java.lang.reflect.Method getMethod();
+       public Object[] getParameters();
+       public void setParameters(Object[] params);
+       public EJBContext getEJBContext();
+       public java.util.Map getContextData();
+       public Object proceed() throws Exception;
+   }
+ 
+
+8. Asynchronous Method Invocation   
+
+@Asynchronous on ejb method or class
+
+SessionContext.wasCancelled()
+
+
+8. Timers using 
+	@Schedule
+	
+	
+9. concurrency control using @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)

@@ -1,0 +1,87 @@
+http://www.javalobby.org/java/forums/t19309.html
+http://blog.javabenchmark.org/2013/05/java-instrumentation-tutorial.html
+
+
+java.lang.instrument.Instrumentation
+	
+	I-   ClassFileTransformer 
+	I-   Instrumentation
+	
+	C-   ClassDefinition
+	
+	
+	E -  IllegalClassFormatException
+	E -  UnmodifiableClassException
+
+
+**********************************************************************************************************************************
+
+a. Plugging into JVM 
+
+
+The instrumentation package is intended to be used by special Java libraries called Java agents.
+A Java agent is a pluggable library that runs embedded in a JVM and intercepts the classloading process. 
+
+What this allows then, is to have the agent 
+	a.) monitor the classloading process and 
+	b.) instrument (or engineer) the bytecode of the classes to provide informational callbacks into the agent's libraries.
+	
+
+
+passing which java agent to use as parameter for JVM
+
+java -javaagent:<<JAR_FILE>> <<CLASS_NAME>>
+
+
+An agent must implement below method
+
+	public static void premain(String agentArguments, Instrumentation instrumentation)
+
+any agent which wants to do dynamic byte code manipulation must use method  - agentmain
+
+	
+	
+
+Manifest file must contain an entry so that we can pass just the jar file
+
+	Premain-Class: <<CLASS_NAM>>
+	
+	in the above space after : is necessary due to a bug
+	
+using maven 
+
+	    <goals>
+	          <goal>jar</goal>
+            </goals>
+	    <configuration>
+                <archive>
+                    <manifestentries>
+                        <premain-class>org.javabenchmark.instrumentation.Agent</premain-class>
+                    </manifestentries>
+                </archive>
+            </configuration>
+
+
+
+
+
+b. Byte Code Instrumentation
+
+With the premain and agentmain methods, the agent can register a ClassFileTransformer instance by providing an implementation of this interface in order to transform class files.
+To register the transformer, the agent can use the Instrumentation#addTransformer method.
+
+
+
+
+
+some free instrumentation agents
+
+	Javassist
+	ASM
+	cglib
+	BCEL
+	Byteman
+	
+
+
+Also see JPDA (Java Platform Debugger Architecture) 	

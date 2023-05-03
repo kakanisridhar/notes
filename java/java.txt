@@ -1,0 +1,25 @@
+System
+
+
+
+Runtime
+
+
+
+ServiceaLoader
+
+	simple plugin framework for achieving 
+
+        Dependency inversion principle
+        
+        services are written in UTF-8 formatted text file stored on disk as META-INF/services/<<InterfaceName>>
+        
+	
+	finding all services in system     
+
+        	private static ServiceLoader<InterfaceName> myLoader = ServiceLoader.load(InterfaceName.class);
+        
+        usage
+        
+        	
+        

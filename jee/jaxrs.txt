@@ -1,0 +1,38 @@
+jaxrs - rest style webservices
+
+Annotations used on classes/methods to define controllers
+
+ApplicationPath
+BeanParam
+ConstrainedTo
+DefaultValue
+Encoded
+HttpMethod
+NameBinding
+    
+Path
+PathParam
+QueryParam
+MatrixParam
+HeaderParam
+FormParam    - requires @Consumes("application/x-www-form-urlencoded") on method
+CookieParam
+    
+Produces
+Consumes    
+
+OPTIONS
+GET
+HEAD    
+POST    
+PUT
+DELETE
+
+
+
+
+Context  - annotation for injecting UriInfo ....
+
+
+
+MediaType - class for media types - xml.....

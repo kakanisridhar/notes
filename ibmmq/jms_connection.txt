@@ -1,0 +1,25 @@
+
+Using JNDI for connectionFactory/destinations lookups, provide the InitialContext with the following properties:
+
+java.naming.provider.url=<ip>:<port, default is 1414>/<channel name, default channel is SYSTEM.DEF.SVRCONN>
+java.naming.factory.initial=com.ibm.mq.jms.context.WMQInitialContextFactory
+java.naming.security.authentication=none
+java.naming.security.credentials=
+java.naming.security.principal=
+
+using WAS (Websphere Application Server) queues, the properties would be as follows:
+
+java.naming.provider.url=iiop://<ip>:<port, the defualt is 2809>
+java.naming.factory.initial=com.ibm.websphere.naming.WsnInitialContextFactory
+java.naming.security.authentication=none
+java.naming.security.credentials=
+java.naming.security.principal=
+
+The rest would be as follows:
+
+Properties config = new Properties();
+config.load(new FileInputStream("connectionConfig.properties"));// this file would contain the properties above
+InitialContext context = new InitialContext(config);
+ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");// connection factory name
+Destination destination = (Destination) context.lookup("destination");// queue/topic name
+

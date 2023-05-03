@@ -1,0 +1,21 @@
+Electron
+*********************************************************************************
+
+Main Process
+	referred in npm package.json
+	app from electron 
+	holds reference to BrowserWindow
+	
+	id - unique ID of window
+	
+RendererProcess
+	opened as BrowserWindow
+	or window.open
+	
+
+BrowserWindow	
+	bounds
+	min/max height - width
+
+ipcRenderer
+ipcMain

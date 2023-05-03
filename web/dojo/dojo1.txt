@@ -1,0 +1,53 @@
+1. AMD -  Asynchronous Module Definition 
+
+modern dojo should be developed with AMD in mind
+
+
+
+module loader defines 2 functions 
+
+	require
+	define
+
+
+require
+	It creates a closure of JavaScript code and provides it with the modules it needs to do the job as return variables passed as arguments to the function. 
+	Typically, the first argument is an array of module IDs (MIDs) and the second is the function. 
+	Within the closure of the require(), we reference the modules based on the variable name we declared in the argument. 
+	
+	While we could call a module anything, there are some common conventions that are used and are usually noted in the Reference Guide.
+	
+	The loader, just like the legacy one, does all the heavy lifting of finding the module, loading it and managing the loaded modules.
+	
+	
+	e.g 
+		require(["dojo/dom", "dojo/domReady!"], function(dom){
+		  dom.byId("helloworld").innerHTML = "Hello New World!";
+		});
+		
+		argument(s) to function = module specified in that order
+
+		
+		In below ex we are obtaining module ref using function call 
+		
+		require(["dojo/dom"], function(){
+		  // some code
+		  var dom = require("dojo/dom");
+		  // some more code
+		});		
+
+
+
+define
+	define is syntactically similar to require
+	
+	
+	
+
+
+2. Using plugins
+	
+In addition to regular modules, the AMD loader also features a new type of module called a plugin. 
+Plugins are used to extend the loader with new features beyond simply loading an AMD module. 
+Plugins are loaded more or less the same way as a regular module, but use a special character "!" at the end of the module identifier to identify the request as a plugin request. 
+Data after the "!" is passed directly to the plugin for processing.

@@ -1,0 +1,28 @@
+Service Facade
+	boundary between presentation and domain layer
+	almost always stateless 
+	takes parameters and returns detached jpa objects
+	
+	remote interface should be stable
+	local interface can extend remote interface inorder to avoid duplication
+	
+	
+	use @Asynchronous for developing fire and forget methods
+	
+	
+Service
+
+	a Service is a product of decomposition, it is not even visible for the clients and only accessible through a Service Facade	
+	
+	A Service is just a stateless session bean with well-defined responsibility	
+	
+
+Persistent Domain Object (PDO)
+
+  
+      PDOs are JPA entities with emphasis on domain logic
+      
+      it is a cure for anaemic domain objects
+      
+      fluent interface(with builder) to model changes to domain objects
+      

@@ -1,0 +1,24 @@
+OSI layers
+
+Application  - handles requests for file transfer, database query, message exchange, and so on, which can be handled by some application-level protocols.
+Presentation - handles the data formats exchanged between two applications. The tasks to be handled by this layer can be data compression, data encryption, video streaming, data format conversion, and so on.
+Session	     - manages the communication session established between two applications such as a conference call or remote connection to a database server. It starts, manages, and terminates the session, which includes tasks such as the request and response of a data transmission process between applications.
+Transport    - handles the connection between two hosts. This layer performs tasks such as error checking, network flow control, transporting data, and establishing, managing, and terminating connections.
+Network      - handles message routing to another network node. This is the layer that works with routers and network logical address configuration tools. Routable protocols are used to handle the tasks in this layer. 
+DataLink     - The data-link layer is often implemented in the network card driver. It specifies the beginning and ending of a data transmission unit. Logical source and destination addresses are converted to hardware addresses in this layer so that packets can be delivered to the designated receivers. This layer also detects and corrects errors that may occur during the data transmission in the physical layer.
+Physical     - The physical layer transmits electrical binary signals over the physical media that link two hosts. When an electrical binary signal arrives from the physical media, the physical layer passes the binary signals up to the data-link layer.
+
+
+
+Tcp/IP
+
+
+Application  - along with os it does what A, P does in OSI
+Transport    - TCP protocol  - T in OSI
+Internet     - IP - N in OSI
+NetworkInterface - 
+
+
+various protocols in 
+Application layer - HTTP,FTP,SSH.......
+

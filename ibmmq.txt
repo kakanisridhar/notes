@@ -1,0 +1,8 @@
+
+mq - message queueing  - enables programs to communicate by sending and recieving messages across a network
+
+administered objects - qmanager ,queues, qchannels , qprocesses, qname lists
+
+qmanager responsible for storing and routing messages to queues and outside world
+
+qmanagers communicate with other qmanagers via channels

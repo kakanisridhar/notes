@@ -1,0 +1,80 @@
+
+Ignore
+
+	Basic
+	PersistenceContexts
+	PersistenceProperty
+	PersistenceUnit
+	PersistenceUnits
+
+*****************************************************************************************
+
+class level annotations
+
+
+PersistenceContext   	- used for injecting entitymanager instance
+
+
+Entity               	- marker annotation for a persistable class
+
+Table - 
+			catalog - used in some dbs
+			name - name of table
+			schema - used in some dbs
+			uniquecontraints - set of UniqueConstraint annotations
+
+SecondaryTable 	  	Specifies a secondary table for the annotated entity class.
+		  	Specifying one or more secondary tables indicates that the data for the entity class is stored across multiple tables. 
+		  	PrimaryKeyJoinColumn used to join the tables
+		  	
+
+SecondaryTables 	multiple tables if exists
+
+			
+
+UniqueConstraint 
+			- name
+			-columnnames : string[]
+
+			used in Table annotation for declaring UniqueConstraints
+
+
+Inheritance		- strategy
+			 how does different types of sub classes under a super class persist in db?
+
+
+DiscriminatorColumn	-	
+DiscriminatorValue	-
+			 if inheritance is single table how how are sub classes differentiated  	
+
+
+
+MappedSuperclass	- used for marking a parent class as persistable
+
+
+Access 			- AccessType.FIELD|AccessType.PROPERTY
+
+
+PrimaryKeyJoinColumn	
+PrimaryKeyJoinColumns
+			- Used with SecondaryTable or Inheritance strategy of joined tables
+
+
+
+*****************************************************************************************
+
+field/property level annotations
+
+
+
+Column			- Define a column in a table(see documentation as it is very important)
+
+Cacheable            	- enable caching
+
+Lob    			- property is a blob, clob
+
+Enumerated  		- Specifies that a persistent property or field should be persisted as a enumerated type - EnumType STRING | ORDINAL(default)
+
+Temporal 		-  Specifies that a persistent property or field should be persisted as a date. TemporalType - DATE | TIME | TIMESTAMP
+
+Transient 		- not to be persisted

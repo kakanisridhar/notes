@@ -1,0 +1,38 @@
+1. New Project
+************************************************************
+
+1. create a new spring template project
+2. add final name to build section in pom.xml
+3. add tomcat 7 maven plugin 
+
+	   <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <path>/${project.artifactId}</path>
+                    <port>8080</port>
+                </configuration>
+            </plugin>
+            
+            
+mvn tomcat7:run
+
+
+2. Controllers
+***********************************************************
+
+a. Marking classes as controllers 	
+
+
+	Declare by using @Controller annotation
+	
+	
+	XML config
+
+	<context:component-scan base-package="com.mridasoft.learning.spring.mvc"/>
+
+	<mvc:annotation-driven />
+	
+	
+b.  

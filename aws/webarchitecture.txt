@@ -1,0 +1,7 @@
+For a large scale app on AWS here is what i do:
+1. All static js/css/img go to a s3 bucket. 
+2. My nodejs app goes to ec2 with pm2 for clustering. 
+3. An application load balancer is in front of ec2. 
+4. All of this is behind cloudfront. My dns points to cloudfront. Cloudfront looks at url and decides if req must go to s3 or elb. All s3 requests are cached by cloudfront. No caching for elb requests
+5. I use amazon certificate mgr for free ssl certificate that terminates at cloudfront
+This is the most scalable deployment arch that i could do on aws. No nginx to manage. All pieces except your node js code is managed by aws.

@@ -1,0 +1,44 @@
+IQB MQ NO SSL
+
+http://malalanayake.wordpress.com/2013/04/02/simple-java-client-to-talk-to-queues-and-topics-in-ibm-mq-7-5/
+
+1. create queue manager
+
+	http://www.youtube.com/watch?v=QMvuWkSs7sc
+
+	name - MCH.NOSSL.QM
+	dead letter queue SYSTEM.DEAD.LETTER.QUEUE
+	
+
+2. create a queue
+	name - MCH_MESSAGE_QUEUE
+
+
+3. create a server connection channel
+
+	name - MCH.DEF.SVRCONN
+	
+4. create users for mq channel
+
+	create a new group 
+		name - mquser
+		
+	create a new os user
+		name - mchmquser
+		password - Orchestrate123
+	
+5. Grant connect authority on channel, display authority on server connnection, all permissions on queue to above group
+
+	
+5. create authentication record for mch on server connection channel
+	
+	
+	recommended client user id - client1
+	fixed user id - mchmquser
+	
+	
+
+
+
+	
+	

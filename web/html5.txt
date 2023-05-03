@@ -1,0 +1,22 @@
+accesskey ="N" for higlighting element with ALT+N 
+
+p - contenteditable = true - for enabling content edition in paragraph
+
+dir = "rtl" or "ltr"
+
+contextmenu  for allowing right click menu 
+
+lang - for indicating lang
+
+spellcheck
+
+
+
+
+
+
+
+required  - attribute added to input fields
+placeholder - text place hoder for placing sample texts
+
+data-  - custom attributes for storing data

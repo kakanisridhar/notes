@@ -1,0 +1,124 @@
+
+1. ****DI Container****
+
+BeanFactory -  provides basic functionality. avoid unless memory restricted
+
+ApplicationContext
+	- child of BeanFactory. It adds easier integration with Spring's AOP features; 
+  	  message resource handling (for use in internationalization), event publication; 
+  	  and application-layer specific contexts such as the WebApplicationContext for use in web applications.
+
+
+	Get beans by using context.getBean(BEAN_ID)
+	
+	ClassPathXmlApplicationContext , FileSystemXmlApplicationContext...
+
+	e.g. 
+	ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"services.xml", "daos.xml"});
+
+
+
+2. **** Xml Container Configuration****
+
+a. conf importing 
+
+<import resource="services.xml"/>
+
+<import resource="classpath:/META-INF/spring/appcontext*.xml"/> 
+
+
+
+
+b. bean declaration
+
+<bean id="oracle" name="wiseworm" class="com.apress.prospring3.ch4.BookwormOracle"/>
+
+other attributes of bean
+
+bean#factory-method = VAL - used for instantiating using static method VAL
+bean#factory-bean = VAL - instance factory method 
+
+
+
+
+c. constructor injection
+
+<bean id="bar" class="x.y.Bar"/>
+<bean name="baz" class="x.y.Baz"/>
+
+<bean id="foo" class="x.y.Foo">
+	<constructor-arg ref="bar"/>
+	<constructor-arg ref="baz"/>
+</bean>
+
+
+constructor-arg#[type,index] - argument resolution
+
+constructor-arg#[name]  - argument resolution using names. beans have to be annotated with @ConstructorProperties (JDK 6) annotation.
+
+constructor-arg#[value,ref] - value setting
+
+
+
+c. setter injection using - property
+
+
+e.g
+
+<bean id="exampleBean" class="examples.ExampleBean">
+	<!-- setter injection using the nested <ref/> element -->
+	<property name="beanOne"><ref bean="anotherExampleBean"/></property>
+	<!-- setter injection using the neater 'ref' attribute -->
+	<property name="beanTwo" ref="yetAnotherBean"/>
+	<property name="integerProperty" value="1"/>
+</bean>
+
+
+d. refering other beans 
+
+ref 
+or use a child idref elelement
+
+
+
+e. Circular dependencies
+
+BeanCurrentlyInCreationException.
+
+
+
+f. collections
+
+bean | ref | idref | list | set | map | props | value | null
+
+
+
+g. p and c namespaces
+   p for properties and c for constructor args
+   
+
+
+
+****skipping method injection
+****skipping autowiring  
+
+
+h. lazy initilization - lazy init = true on bean declaration or even at root of beans.xml
+   
+
+
+i. bean scopes - 
+
+	singleton - Application wide
+	prototype(statefull clasess) - normal objects
+	request - web - spanning a http request
+	session - web - spanning a http session
+	global session -  portal - global session
+	
+	thread scope - SimpleThreadScope
+	
+	
+
+
+****skipping custom scopes
+

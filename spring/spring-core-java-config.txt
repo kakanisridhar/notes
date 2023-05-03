@@ -1,0 +1,110 @@
+
+xml file should contain <context:annotation-config/> for annotaion processing
+
+post processors used for annotation scanning and config
+
+CommonAnnotationBeanPostProcessor
+RequiredAnnotationBeanPostProcessor
+AutowiredAnnotationBeanPostProcessor
+
+
+****************************************************
+
+Annotation configuration
+
+
+@Required
+
+post process all definitos and raises error if required beans are null
+
+
+@Autowired
+
+this can be applied to setter aswell as any other methods,fields
+
+this is similar to @Inject(there may be some differences in narrowing down the definition)
+
+
+@Qualifier can be used to name drive injection of a particular type (not similar to @Resource)
+
+this will help in implementing many instances of a particular interface 
+
+
+qualifiers can be definied in xml file using <qualifier type= x.y.z value="zbc">
+
+
+JSR 299
+
+@Postconstruct   - supported by init and destroy methods
+@PreDestroy     
+
+
+
+@Inject    -@Autowired will do 
+
+@Named     -@componenet will do 
+
+
+JSR-250 
+@Resource   -  This acts as autowiring by name
+
+****************************************************
+
+
+spring sterotypes
+
+
+@Component  - base sterotype extended by below 
+
+
+@Repository   - DAO layer
+@Service      - Service layer
+@Controller   - view layers
+
+
+<context:component-scan base-package="org.example"/>
+
+is used for scanning components in classpath and registering those respective beans
+
+inclusions and exclusions for scanning  
+
+<context:include-filter type="regex" expression=".*Stub.*Repository"/>
+<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+
+
+
+@scope - used to specify in which scope the specified bean is created
+
+
+****************************************************
+
+
+java configuration 
+
+
+@Configuration 
+@Bean 
+@Import
+@DependsOn
+@scope
+
+
+for defining beans in java
+
+**approacch used by guice, where modules define beans
+
+
+AnnotationConfigApplicationContext can be used to scan and identify beans
+
+ctx.register(
+ctx.refresh(
+
+
+in a web module use
+
+contextClass 
+org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+
+
+
+******* >>> All @Configuration clasess are subclassed with CGLIB

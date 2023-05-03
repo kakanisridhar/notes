@@ -1,0 +1,25 @@
+http://tiredblogger.wordpress.com/2009/11/09/creating-local-git-repositories-yeah-its-that-simple/
+
+
+mkdir example.git ( assuming created in drive h:)
+cd example.git
+git init --bare
+
+
+
+in another folder
+
+git clone H:\example.git example
+
+git add .
+
+git commit -am "this is our first commit"
+
+git push origin master
+
+
+
+done enjoy with your local repo
+
+*********************************
+

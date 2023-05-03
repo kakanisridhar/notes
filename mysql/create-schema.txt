@@ -1,0 +1,7 @@
+create schema learning
+
+create user 'learning'@'localhost' identified by 'learning'
+
+grant usage on *.* to learning@localhost identified by 'learning'
+
+grant all privileges on learning.* to learning@localhost 

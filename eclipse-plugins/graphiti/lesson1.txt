@@ -1,0 +1,14 @@
+create a new plugin project which contributes to ui
+select plugin with graphiti editor
+click finish
+
+export the project as jar/archive
+
+copy the jar to plugins directory of eclipse
+
+create a new java project
+
+create a new > other > graphiti diagram
+
+choose type graphiti1 created.
+

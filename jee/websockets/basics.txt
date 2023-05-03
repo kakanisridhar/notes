@@ -1,0 +1,31 @@
+ServerEndpoint  - class level annotation for exposing as resource
+
+	- value - uri of end point
+	- encoders - classes for encoding messages 
+	- decoders - classes for decoding messages
+
+onmessage
+
+	message from client
+
+onclose
+	user closed connection
+
+onerror
+
+	
+
+onopen
+
+	user opened connection
+	
+	
+
+****************
+
+normally end poin will maintain session of active users
+
+Writing message to cleint from server	
+
+Session.RemoteEndpoint.Basic.send****
+

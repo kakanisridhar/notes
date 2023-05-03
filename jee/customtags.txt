@@ -1,0 +1,28 @@
+simple tag handlers - tag handlers implementing javax.servlet.jsp.tagext.SimpleTag  - jsp 2.0
+classic tag handlers - tag handlers implementing Tag, IterationTag, or BodyTag
+
+SimpleTagSupport - basic implementation of SimpleTag
+
+lifecycle
+
+	The JSP container creates an instance of a simple tag handler by calling its no-argument constructor.
+	Therefore, a simple tag handler must have a no-argument constructor.
+
+	The JSP container calls the setJspContext method, passing a JspContext object: The most important method of JspContext is getOut, which returns a JspWriter for sending response to the client. 
+	The signature of the setJspContext method is as follows. public void setJspContext(JspContext jspContext)
+	In most cases, you will need to assign the passed in JspContext to a class variable for later use.
+	
+
+	If the custom tag representing the tag handler is nested within another tag, the JSP container calls the setParent method.
+	This method has the following signature: public void setParent(JspTag parent)
+	
+
+	The JSP container calls the setter for each attribute defined for this tag.
+
+	If a body exists, the JSP container calls the setJspBody method of the SimpleTag interface, passing the body as a JspFragment.
+	The JSP container will not call this method if the tag does not have a body.
+
+	The JSP container calls the doTag method. All variables are synchronized when the doTag method returns.
+	
+	
+

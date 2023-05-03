@@ -1,0 +1,33 @@
+delcared using @interface annotationname
+
+metadata on annotations 
+
+@Retention  - want to retain this annotation at compile time or runtime or ....
+
+@Target     - Where is this allowed   
+
+
+String value() is default no name attribute for annotation
+
+also it is useful to have enums to
+
+
+
+*************************************************
+
+http://deors.wordpress.com/2011/10/08/annotation-processors/
+
+
+
+Annotation processing - java compiler processes annotations with registered annotation processors while compiling code
+
+
+register your processor - META-INF/services/javax.annotation.processing.Processor
+
+
+writing you own processor 
+
+
+@SupportedAnnotationTypes(value= {"*"})
+@SupportedSourceVersion(SourceVersion.RELEASE_6)
+extend AbstractProcessor  

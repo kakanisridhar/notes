@@ -1,0 +1,8 @@
+create a git repo as described in git.txt
+
+create a new project in the cloned repo
+	forge newproject
+	forge plugin setup
+	forge plugin new
+	
+	forge install git plugin <<path to git>>

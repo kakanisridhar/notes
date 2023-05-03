@@ -1,0 +1,15 @@
+https://www.youtube.com/watch?v=1joPIOzZwZ8&list=PL-jknjza-84ZUt6wdrFzb3IbaHaOXTmEt
+
+https://github.com/kpavlov/jreactive-8583
+https://bitbucket.org/chochos/j8583/src/master/
+
+
+Merchant
+Aquirer
+Network
+Issuer
+Cardholder
+
+
+Aquirer - process payments on behalf of merchant - e.g first data , chase..
+          small ones may use payment processor , payment gateway from third party

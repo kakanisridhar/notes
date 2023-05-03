@@ -1,0 +1,5 @@
+after starting karaf
+
+bundle:install -s mvn:com.mridasoft.learning.osgi/provider/0.0.1-SNAPSHOT
+
+bundle:install -s mvn:com.mridasoft.learning.osgi/client/0.0.1-SNAPSHOT

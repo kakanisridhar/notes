@@ -1,0 +1,79 @@
+container of all application metrics - MetricRegistry   
+
+	e.g  
+
+	final MetricRegistry metrics = new MetricRegistry();
+
+
+Gauges
+	A gauge is an instantaneous measurement of a value
+	
+	but the idea is to use metrics registry to see all statistics data
+	
+	e.g
+	metrics.register(MetricRegistry.name(QueueManager.class, name, "size"),
+	         new Gauge<Integer>() {
+	                            @Override
+	                             public Integer getValue() {
+	                                 return queue.size();
+	                             }
+                         });
+                         
+	beware - java collections size is O(n)                         
+
+Counter
+	A counter is just a gauge for an AtomicLong instance
+	
+	
+
+Meters
+	A meter measures the rate of events over time (e.g., requests per second). 
+	In addition to the mean rate, meters also track 1-, 5-, and 15-minute moving averages.
+	
+	
+	e.g
+	
+	private final Meter requests = metrics.meter(name(RequestHandler.class, "requests"));
+	
+	public void handleRequest(Request request, Response response) {
+	    requests.mark();
+	    // etc
+	}
+	
+
+
+Histograms
+
+	A histogram measures the statistical distribution of values in a stream of data. 
+	In addition to minimum, maximum, mean, etc., it also measures median, 75th, 90th, 95th, 98th, 99th, and 99.9th percentiles.
+	
+	e.g
+	
+	private final Histogram responseSizes = metrics.histogram(name(RequestHandler.class, "response-sizes");
+	
+	public void handleRequest(Request request, Response response) {
+	    // etc
+	    responseSizes.update(response.getContent().length);
+	}
+	
+
+Timers
+	
+	A timer measures both the rate that a particular piece of code is called and the distribution of its duration.
+	
+	e.g
+	
+	private final Timer responses = metrics.timer(name(RequestHandler.class, "responses"));
+	
+	public String handleRequest(Request request, Response response) {
+	    final Timer.Context context = responses.time();
+	    try {
+	        // etc;
+	        return "OK";
+	    } finally {
+	        context.stop();
+	    }
+	}
+	
+
+	

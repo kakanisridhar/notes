@@ -1,0 +1,103 @@
+React
+*********************************************************************************
+
+Componenet - https://facebook.github.io/react/docs/component-specs.html
+
+	state - component state - setting state will make component to rerender
+	props - properties passed as attributes to component in html 
+	
+	render - method called by React to render on browser 
+	
+	various life cycle methods - 
+		componentWillMount
+		componentDidMount  - Mounted on dom - references are available - best place to set async operations 
+		componentWillUnmount - cleanup resources  
+		shouldComponentUpdate - decide if component should be redrawn based on state,props passed  
+	
+	
+	setState  - modify state - and trigger render
+
+	forceUpdate - to force update of component 
+	
+	PropValidation
+	React.PropTypes - utility class for defining validation rules on properties
+	propTypes -  declare property validation rules for properties in component using React.PropTypes
+
+	
+
+*********************************************************************************
+JSX
+
+{} - for interpolation
+e.g {this.props.date.toTimeString()}
+{this.state.data} 
+	 
+ref - references to dom by id in virtual dom
+key - attribute used for peoperly identifying a component
+className - for setting html class attribute
+onClick={this.handleClick} - camelCase event = interpolate event handler
+	
+
+Flux
+*********************************************************************************
+
+Against PubSub
+Uni directional data flow
+
+
+https://scotch.io/tutorials/getting-to-know-flux-the-react-js-architecture
+
+
+Action - {type:String, payload: Object} - Value Object which are passed to Dispatcher
+         view actions  - triggered by view
+		 server actions - triggered by code(after fetching data from server)
+		 
+Dispatcher - forwards Actions to Stores - Singleton
+
+Store - multiple stores - one store per entity type
+ 
+ControllerView - Component which subscribes to stores + triggers actions and passes data to dumb components 
+
+
+Reflux
+*********************************************************************************
+
+Actions
+Stores
+AggregateStores
+ContainerComponents
+
+Action
+	Construct - Reflux.createAction or Reflux.createActions
+	Use - by calling function directly or triggerAsync
+
+Store
+	Construct - Reflux.createStore
+				param - object with init function for listening on actions - this.listenTo(Action,callback)
+				
+	Use - do some work on listener callback and trigger listeners(components)
+	
+ContainerComponents
+	Use - subscribe to store using Store.listen(callback)
+	      listen will return a subscription handle which can be used to cancel subscription     	
+ 	
+ReactRouter
+*********************************************************************************
+
+Router
+	Route(path, Component)
+		IndexRoute
+		Route
+		
+	IndexLink
+	Link
+    activeClassName	
+		
+	
+Links
+*************************************************************************************	
+How to design a table 
+
+https://github.com/GriddleGriddle/Griddle/tree/master/scripts
+https://react.rocks/
+mobx - alternative to redux

@@ -1,0 +1,32 @@
+Straight Through Processing for Financial Services: The Complete Guide - skill port -http://skillport.books24x7.com/toc.aspx?bookid=37289
+
+Practical .NET for Financial Markets  - http://skillport.books24x7.com/toc.aspx?bookid=14632
+
+Quantitative Risk Management: Concepts, Techniques, and Tools - http://skillport.books24x7.com/toc.aspx?bookid=36694
+
+C# for Financial Markets - http://skillport.books24x7.com/toc.aspx?bkid=46823
+
+
+
+
+Pro Data Visualization using R and JavaScript - http://skillport.books24x7.com/bookshelf.asp?view=history
+
+The Definitive Guide to MongoDB: The NoSQL Database for Cloud and Desktop Computing - http://skillport.books24x7.com/toc.aspx?bkid=37335
+
+
+
+links
+
+
+http://thinkinginsoftware.blogspot.co.uk/2012/05/using-quartz-camel-and-spring-for.html
+
+http://www.opencredo.com/blog/a-simple-introduction-to-complex-event-processing-stock-ticker-end-to-end-sample
+
+
+
+
+
+
+Mysql
+	Expert MySQL, Second Edition - http://skillport.books24x7.com/toc.aspx?bookid=54087
+	

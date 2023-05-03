@@ -1,0 +1,17 @@
+1.validation
+2.enhancing fact model based upon choice made by front end xml
+
+
+a)
+
+checking if a model exists
+
+$1 == true in condition
+
+true in rule row
+
+
+
+b) rule_executed fact model whic are used to run rules based in seq order
+salience is not used extensively dont know why
+but setting of different objects in different runs is acheived by such type of dummy facts

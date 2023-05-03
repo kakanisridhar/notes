@@ -1,0 +1,132 @@
+learn jsf here - http://publib.boulder.ibm.com/infocenter/ieduasst/v1r1m0/index.jsp?topic=/com.ibm.iea.rad_v6/rad/6.0/JSF/WASv6_JSF_Details/player.html
+
+
+1. JSF - similar to ASP.NET webforms
+
+Pages, Components, ManagedBeans, Tags
+
+faces-config.xml - config file to list converters, listeners, validators......
+
+managed beans -  lightweight container-managed objects (POJOs) with minimal requirements. They support a small set of basic services, such as resource injection, 
+		 lifecycle callbacks and interceptors.
+
+
+
+2. Request processing lifecycle
+
+Restore View  - > Apply Request Values -> [Process Events] -> Process Validations -> [Process Events] ->Update Model Values - > [Process Events] ->Invoke Application - >[Process Events] -> Render Response
+
+
+a. Restore View 
+
+Stores page in FacesContext
+Finds or creates a tree of components for the selected view. 
+Some components, like HtmlCommandButton, will generate action events (or other types of events) in this phase.
+
+events : Phase events
+
+
+
+b. Apply Request Values 
+
+Updates the value of the components to equal ones sent in the request, optionally using converters. 
+Adds conversion errors if there is an error. 
+Also generates events from request parameters.
+JSF runtime applies request values to UI components by calling a high-level method (processDecodes( )) on the View (or UIViewRoot) of the UI component tree.
+
+events : Phase events, data model events, action events
+
+
+
+c. Process Validations 
+
+Asks each component to validate itself (which may include using external validators). 
+Validation error messages may be reported.
+processValidators( ) on UIViewRoot. Valid property to indicate validation. FaceMessage - message for displaying incase of errors
+events : Phase events, data model events, value-change events
+
+
+d. Update Model Values 
+
+Update Model Values 
+Updates all the values of backing beans or model objects
+associated with components. Conversion error messages
+may be reported.
+
+processUpdates() on UIViewRoot - variants updateModel( ) - sets values on ManagedBeans
+events : Phase events, data model events 
+
+
+e. Invoke Application 
+
+Calls any registered action listeners. 
+The default action listener will also execute action methods referenced bycommand components (like HtmlCommandButton) and choose the next view to be displayed.
+
+processApplication() - ActionEvents fired
+
+events : Phase events, action events
+
+
+f. Render Response
+
+Render Response Displays the selected view using the current display technology
+events : Phase events
+
+
+processValidators( ) 
+
+ValueHandler
+EditableValueHandler
+ActionSource 
+
+
+
+****************************************************************************
+
+
+2 Facelets
+
+a. simple usage
+
+faclets tags - http://java.sun.com/jsf/facelets  - xmlns:ui
+jsf tags - http://java.sun.com/jsf/core - xmlns:h
+
+ui:composition - content outside this tag will begnored 
+ui:define - place holder for insertion content
+ui:insert - insert content into place defined by ui:define
+
+
+
+b. event handling
+
+
+
+
+
+c. creating simple controls
+
+xmlns:composite="http://java.sun.com/jsf/composite"
+
+
+composite:interface - 
+composite:composite - 
+
+
+****************************************************
+
+3 Expression language
+
+immediate evaluation  - ${property}
+deffered evaluation   - #{property}
+
+
+
+
+
+
+
+
+ 
+
+
+

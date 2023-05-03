@@ -1,0 +1,52 @@
+
+http://www.ibm.com/developerworks/websphere/techjournal/0610_woolf/0610_woolf.html
+
+
+
+1. create self signed certificates for mq and client
+
+	Certificates should have alias of the form 
+		ibmwebspheremq<<QUEUEMANAGER_IN_LOWER_CASE>>
+		ibmwebspheremq<<USER_NAME_LOWER_CASE>>
+
+	
+	below commands generate certiticates for
+
+		queuemanager - sslqueue	
+		client       - client1 
+ 	
+ 
+ 	# Create the server and application client key stores and certificates
+ 	keytool -genkeypair -alias ibmwebspheremqsslqueue -keyalg RSA -keysize 1024 -dname "CN=www.misys.com, OU=mch, O=cmf, L=london, ST=paddington, C=UK" -keypass changeit -storepass changeit -keystore server.jks
+ 	keytool -genkeypair -alias ibmwebspheremqclient1 -keyalg RSA -keysize 1024 -dname "CN=www.misys.com, OU=mch, O=cmf, L=london, ST=paddington, C=UK" -keypass changeit -storepass changeit -keystore client.jks
+ 	 
+ 	# Copy the client's public certificate to the server's keystore
+ 	keytool -exportcert -keystore client.jks -storepass changeit -file client-public.cer -alias ibmwebspheremqclient1
+ 	keytool -importcert -keystore server.jks -storepass changeit -file client-public.cer -alias ibmwebspheremqclient1 -noprompt
+ 	 
+ 	# Take a peek at the server's keystore to make sure that the client's certificate is there
+ 	keytool -v -list -keystore server.jks -storepass changeit
+ 	 
+ 	# Copy the server's public certificate to the client's keystore
+ 	keytool -exportcert -keystore server.jks -storepass changeit -file server-public.cer -alias ibmwebspheremqsslqueue
+ 	keytool -importcert -keystore client.jks -storepass changeit -file server-public.cer -alias ibmwebspheremqsslqueue -noprompt
+ 	 
+ 	# Take a peek at the client's keystore to make sure that the client's certificate is there
+ 	keytool -v -list -keystore client.jks -storepass changeit
+ 	 
+ 	# Create a browser keystore most browsers can read easily
+ 	keytool -importkeystore -srckeystore client.jks -srcstorepass changeit -srcalias ibmwebspheremqclient1 -destkeystore client.p12 -deststoretype PKCS12 -deststorepass changeit -destalias ibmwebspheremqclient1 -noprompt
+ 	 
+ 	# Take a peek at the browser's keystore to make sure that the client's certificate is there
+	keytool -v -list -keystore client.p12 -storetype pkcs12 -storepass changeit
+
+2.  create authentication on channel to map SSL DN(CN=www.misys.com) to defined MCAUserID
+
+
+
+-Djavax.net.ssl.trustStore=D:/skakani/servers/wmq7.5/Qmgrs/SSLQUEUE/ssl1/client.jks -Djavax.net.ssl.trustStorePassword=changeit
+
+-Djavax.net.ssl.keyStore=D:/skakani/servers/wmq7.5/Qmgrs/SSLQUEUE/ssl1/client.jks -Djavax.net.ssl.keyStorePassword=changeit
+
+-Djavax.net.debug=ssl:handshake
+

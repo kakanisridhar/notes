@@ -1,0 +1,18 @@
+installation is simple
+
+but requires a user for running as service
+
+use local user for logging in and works fine
+
+
+
+
+Create a local queue manager
+
+create a server connection channel
+
+create a dead letter queue
+
+http://www.ibm.com/developerworks/websphere/library/techarticles/1204_gupta/1204_gupta.html
+
+

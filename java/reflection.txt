@@ -1,0 +1,35 @@
+Type Information
+
+	Class<T> - is the entry point for knowing something about a variable
+	
+	you get an instance of class by calling 	
+	
+	.getClass - if object or array
+	.class - if primitive type
+	
+
+
+	getClass - for getting the class of a variable
+	
+
+
+Dynamic Proxy
+
+	1. implement InvocationHandler
+	
+	i.e method 
+	public Object invoke(Object proxy, Method method, Objectf] args)
+	
+	normally implementations will take an instance of non proxied instance
+	
+	
+	
+	2. use Proxy.newProxyInstance to create an instance of required class
+	
+	pass it down the stream
+	
+	
+	
+	
+	
+	
