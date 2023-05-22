@@ -1,0 +1,39 @@
+
+Microservices - also known as the microservice architecture - is an architectural style that structures an application as a collection of services that are:
+
+Independently deployable
+Loosely coupled
+Organized around business capabilities
+Owned by a small team
+
+
+
+Patterns
+========
+
+ Service Registry - provides a central repository to discover microservice byt its name
+
+ Circuit Breaker Pattern - in order to avoid cascading failures , when calling microservices we should use circuit breaker
+
+ API Gateway Pattern - It provides a single point of entry for all the microservices and acts as a proxy between the clients and the microservices, routing requests to the appropriate service
+                        For implementing cross cutting concerns like seucrity, rate limiting , aggregation
+
+
+Saga Pattern - As we dont use distributed transactions , The Saga pattern provides a way to manage transactions that involve multiple microservices.
+It is used to ensure that a series of transactions across multiple services are completed successfully, and if not, to roll back or undo all changes that have been made up to that point.
+
+Orchestration  - In this pattern a central orchetrator will act on the business event 
+
+Choregography  - In this pattern logic of a particular business case (for e.g order cancel) is distributed on all services
+basically event handlers consume and produce events to other handlers in other microservices
+
+
+CQRS  - Command Query Responsibility Segregation (CQRS) pattern is another popular Microservice design pattern that separates commands (write operations) 
+and queries (read operations) into separate models, each with its own database.
+
+
+ Backends for Frontends - Backends for Frontends (BFF) is a design pattern used in microservice architecture to handle the 
+ complexity of client-server communication in the context of multiple user interfaces.
+
+
+Observability patterns - Distributed tracing , log aggregation , heatlh check api , application metrics

@@ -1,0 +1,39 @@
+terraform init - initializes terraform providers
+terraform plan - sanity check by connecting to the resource and query the infrastructure
+terraform apply - apply the plan to get a desired state in infrastructure
+terraform destroy  - destroys resources
+                    specify target param for destroying single resource
+terraform state list - 
+terraform state show  - show the sate of resource
+terraform output - will display output without applying
+terraform refresh - 
+
+
+.TF file
+    provider provider_name {
+        options
+        key = value
+    }
+
+    resource "provider_name_resourcetype" "name" {
+        options
+
+        tags = {
+            Name = value
+        }
+    }
+
+
+    to refer to other resources created in same tf file we should use 
+    provider_name_resourcetype.name.id
+    
+
+    output "some name " {
+        value = provider_name_resourcetype.name.propertyname
+    }
+    to show some output
+
+.tfstate - file where terraform stores all the infrastructure objects(which are mentioned in tf file) state , so that changes can be applied
+ 
+
+ 

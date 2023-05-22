@@ -1,7 +1,5 @@
 # aws certified solution architect associate
 
-https://app.pluralsight.com/player?course=aws-certified-solutions-architect-associate
-
 Region - region in a country/continent
 Availability Zone - in a region
 

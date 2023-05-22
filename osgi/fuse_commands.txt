@@ -3,8 +3,17 @@ fabric:profile-edit
 features:install
 features:uninstall
 
-install - for installing bundles
-uninstall - for uninstalling bundle
+a feature is a set of bundles
+
+bundle:install - for installing bundles
+bundle:uninstall - for uninstalling bundle
+
+config:list
+config:edit
+config:propertylist
+
+commands for runtime editing of config
+config is loaded from etc folder
 
 
 InstallDir/etc/org.apache.karaf.shell.cfg - for ssh settings
@@ -12,19 +21,19 @@ InstallDir/etc/org.apache.karaf.shell.cfg - for ssh settings
 
 
 broker.xml				Configures the default Apache ActiveMQ broker in a Fabric (used in combination with the io.fabric8.mq.fabric.server-default.cfg file).
-config.properties			The main configuration file for the container See Section 11.2, “Setting OSGi Framework and Initial Container Properties” for details.
+config.properties			The main configuration file for the container See Section 11.2, ï¿½Setting OSGi Framework and Initial Container Propertiesï¿½ for details.
 keys.properties				Lists the users who can access the JBoss Fuse runtime using the SSH key-based protocol. The file's contents take the format username=publicKey,role
 org.apache.aries.transaction.cfg	Configures the transaction feature
 org.apache.felix.fileinstall-deploy.cfg	Configures a watched directory and polling interval for hot deployment.
 org.apache.karaf.features.cfg		Configures a list of feature repositories to be registered and a list of features to be installed when JBoss Fuse starts up for the first time.
 org.apache.karaf.features.obr.cfg	Configures the default values for the features OSGi Bundle Resolver (OBR).
 org.apache.karaf.jaas.cfg		Configures options for the Karaf JAAS login module. Mainly used for configuring encrypted passwords (disabled by default).
-org.apache.karaf.log.cfg		Configures the output of the log console commands. See Section 16.2, “Logging Configuration”.
+org.apache.karaf.log.cfg		Configures the output of the log console commands. See Section 16.2, ï¿½Logging Configurationï¿½.
 org.apache.karaf.management.cfg		Configures the JMX system. See Chapter 13, Configuring JMX for details.
-org.apache.karaf.shell.cfg		Configures the properties of remote consoles. For more information see Section 8.1, “Configuring a Container for Remote Access”.
+org.apache.karaf.shell.cfg		Configures the properties of remote consoles. For more information see Section 8.1, ï¿½Configuring a Container for Remote Accessï¿½.
 io.fabric8.maven.cfg			Configures the Maven repositories used by the Fabric Maven Proxy when downloading artifacts, (The Fabric Maven Proxy is used for provisioning new containers on a remote host.)
 io.fabric8.mq.fabric.server-default.cfg	Configures the default Apache ActiveMQ broker in a Fabric (used in combination with the broker.xml file).
-org.ops4j.pax.logging.cfg		Configures the logging system. For more, see Section 16.2, “Logging Configuration”.
+org.ops4j.pax.logging.cfg		Configures the logging system. For more, see Section 16.2, ï¿½Logging Configurationï¿½.
 org.ops4j.pax.url.mvn.cfg		Configures additional URL resolvers.
 org.ops4j.pax.web.cfg			Configures the default Jetty container (Web server). See Securing the Web Console.
 startup.properties			Specifies which bundles are started in the container and their start-levels. Entries take the format bundle=start-level.

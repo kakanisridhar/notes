@@ -86,7 +86,7 @@ Security-CIS-becnhmark
 CIS - center for internet security benchmark
 
 	
-VPC + VPN
+VPC + subnets + route table + internet gateway + nat gateway + alb
 --------------------------------------------------
 Virtual private cloud
 

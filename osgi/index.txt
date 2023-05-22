@@ -1,4 +1,0 @@
-1. intro
-2. versioning
-3. services
-4. karaf
