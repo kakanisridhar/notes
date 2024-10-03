@@ -27,3 +27,5 @@ IAM role - usually associated with an EC2 instance or lamda to programmatically 
 
 Identity providers uses IAM roles , users on IDP aquire federated roles to access resources
 AWS IAM identity center is used for doing this
+
+[Back to index](index.md)
