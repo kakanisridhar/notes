@@ -1,4 +1,5 @@
 # AWS
+
 AWS - Infrastructure as service
 
 Multiple regions, Multiple availability zones within a region and multiple Data centers within a zone
@@ -16,8 +17,16 @@ Edge locations
 interaction with AWS services - via api calls - aws management console - web ui , aws cli , aws sdks
 
 # Security 
+
 Both you and AWS responsible for security
 
 AWS responsibility: AWS for security of the cloud, i.e buildings and fiber cables, physical infra like virtualization servers , software.
 
 Customer responsibility: you are responsible for patching os of ec2 instance , encrypting data in transit and rest, backing up data, configuring firewals.. 
+
+
+## Billing and cost management
+
+Billing and cost management / Bills / Charges by services
+
+Billing and cost management / Budget  - Set up alerts here using templates for AWS to alert when budget crosses a limit

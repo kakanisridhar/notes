@@ -28,6 +28,8 @@ Storage - optional additional storage
 
 IAM - what role this EC2 instance is in - to access other resources
 
+User Data - script to get executed when vm is initialized (only once)
+
 
 ## Life Cycle
 
@@ -43,15 +45,27 @@ Shutting down, terminated - instance store , ip are lost,
 
 ## Pricing
 
-- on demand : per hour or per second billing for compute , no long term commitment
-- Spot Instances : set limits on how much you pay per hour, aws provisions if spare compute is available , used when fault tolerant state less workloads 
+- on demand : predictable pricing - per hour or per second billing for compute , no long term commitment, highest cost
+- Spot Instances : set limits on how much you pay per hour, aws provisions if spare compute is available i.e spot sprice < limit prices
+  used when fault tolerant state less workloads 
+- Spot Fleet:  Set of spt instances + optional on demand instances
 - Savings Plans: 1 - 3 years , low cost compared to ondemand
 - Reserved Instances : 
+    - 1 - 3 years
     - Standard Reserved Instances: just like savings plan - pay partially/fully upfront, 72% off on demand
     - Convertible Reserved Instances: 54% off ondemand prices
     - Scheduled Reserved Instances: time window based reservation
 - Dedicated Host: your own physical server
+- Dedicated instances : Dedicated Instances are EC2 instances that run on hardware that's dedicated to a single AWS account
 
+## Placement Group
+
+Cluster - All instances in same AZ , for high performant apps fast network
+Spread - Across multiple AZ , max 7 instances per group per AZ , for failure tolerance
+Partition - Spread instances in different partitions(different racks) in same AZ , for applications like hadopp
+
+Menu available under network and security 
+Launch instances > placement group name
 
 ## Resilience
 
