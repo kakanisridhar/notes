@@ -61,16 +61,12 @@ Shutting down, terminated - instance store , ip are lost,
 ## Placement Group
 
 Cluster - All instances in same AZ , for high performant apps fast network
-Spread - Across multiple AZ , max 7 instances per group per AZ , for failure tolerance
+Spread - Across multiple AZ , max 7 instances per group per AZ , for failure tolerance, For high availability deploy in multiple az , fronted by load balancer
+
 Partition - Spread instances in different partitions(different racks) in same AZ , for applications like hadopp
 
 Menu available under network and security 
 Launch instances > placement group name
-
-## Resilience
-
-For high availability deploy in multiple az , fronted by load balancer
-
 
 ## Auto scaling
 

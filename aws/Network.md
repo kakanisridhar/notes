@@ -14,7 +14,6 @@ Ec2 instances get public and private ip which changes upon instance termination
 Inorder to get a dedicated IP assignment users can buy Elastic IP and assgin it tp Ec2 instance
 
 
-
 ## Elastic Netwrok Interface
 
 Logical component in VPC representing Virtual network card
